@@ -64,58 +64,58 @@
                         <legend>Внутренний звонк</legend>
                         <ul class="controls">
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Определить имя Caller ID учетной записи для внутренних звонков.<br/>Если имя Caller ID устройства и пользователя не установлены, то будет использоваться это Caller ID.">
+                                <span class="tooltip-wrapper" tooltip="Установить Caller ID имя пользователя для внутренних звонков.<br/>Если Caller ID имя устройства и пользователя не установлены, то будет использоваться это Caller ID.">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_name_internal">Caller ID Name:</label>
+                                    <label for="caller_id_name_internal">Caller ID Имя:</label>
                                 </span>
                                 <input id="caller_id_name_internal" name="caller_id.internal.name" type="text" placeholder="Name" value="${data.caller_id.internal.name}" />
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Define the Caller ID Number of this Account for In-House Calls.<br/>If the Caller ID Number of the device and of the user is not set, this Caller ID Number will be used.">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_number_internal">Caller ID Number:</label>
+                                    <label for="caller_id_number_internal">Caller ID Номер:</label>
                                 </span>
-                                <input id="caller_id_number_internal" name="caller_id.internal.number" type="text" placeholder="555-555-5555" value="${data.caller_id.internal.number}" />
+                                <input id="caller_id_number_internal" name="caller_id.internal.number" type="text" placeholder="089-500-5555" value="${data.caller_id.internal.number}" />
                             </li>
                         </ul>
                     </fieldset>
 
                     <fieldset>
-                        <legend>Outbound Calls</legend>
+                        <legend>Исходящие звонки</legend>
                         <ul class="controls">
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Define the Caller ID Name of this Account for Outbound Calls.<br/>If the Caller ID Name of the device and of the user is not set, this Caller ID Name will be used.">
+                                <span class="tooltip-wrapper" tooltip="Установить Caller ID имя пользователя для исходящих звонков.<br/>Если Caller ID имя устройства и пользователя не установлены, то будет использоваться это Caller ID имя.">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_name_external">Caller ID Name:</label>
+                                    <label for="caller_id_name_external">Caller ID Имя:</label>
                                 </span>
                                 <input id="caller_id_name_external" name="caller_id.external.name" type="text" placeholder="Name" value="${data.caller_id.external.name}" />
                             </li>
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Define the Caller ID Number of this Account for Outbound Calls.<br/>If the Caller ID Number of the device and of the user is not set, this Caller ID Number will be used.">
+                                <span class="tooltip-wrapper" tooltip="Установить Caller ID номер пользователя для исходящих звонков.<br/>Если Caller ID имя устройства и пользователя не установлены, то будет использоваться это Caller ID номер.">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_number_external">Caller ID Number:</label>
+                                    <label for="caller_id_number_external">Caller ID Номер:</label>
                                 </span>
-                                <input id="caller_id_number_external" name="caller_id.external.number" type="text" placeholder="555-555-5555" value="${data.caller_id.external.number}" />
+                                <input id="caller_id_number_external" name="caller_id.external.number" type="text" placeholder="089-500-5555" value="${data.caller_id.external.number}" />
                             </li>
                         </ul>
                     </fieldset>
 
                     <fieldset>
-                        <legend>Emergency</legend>
+                        <legend>Экстренных вызов</legend>
                         <ul class="controls">
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Define the Caller ID Name of this Account for Emergency Calls.">
+                                <span class="tooltip-wrapper" tooltip="Определить Caller ID имя учетной записи для экстренных вызовов.">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_name_emergency">Caller ID Name:</label>
+                                    <label for="caller_id_name_emergency">Caller ID Имя:</label>
                                 </span>
                                 <input id="caller_id_name_emergency" name="caller_id.emergency.name" type="text" placeholder="Name" value="${data.caller_id.emergency.name}" />
                             </li>
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Define the Caller ID Number of this Account for Emergency Calls.">
+                                <span class="tooltip-wrapper" tooltip="Определить  Caller ID номер учетной записи для экстренных вызовов.">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_number_emergency">Caller ID Number:</label>
+                                    <label for="caller_id_number_emergency">Caller ID Номер:</label>
                                 </span>
-                                <input id="caller_id_number_emergency" name="caller_id.emergency.number" type="text" placeholder="555-555-5555" value="${data.caller_id.emergency.number}" />
+                                <input id="caller_id_number_emergency" name="caller_id.emergency.number" type="text" placeholder="089-500-5555" value="${data.caller_id.emergency.number}" />
                             </li>
                         </ul>
                     </fieldset>
@@ -126,26 +126,26 @@
 
                 <div id="vm_to_email">
                     <fieldset>
-                        <legend>Template fields</legend>
+                        <legend>Шаблон поля</legend>
                         <ul class="controls">
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Input the support number that will be inserted in the voicemail-to-email template">
+                                <span class="tooltip-wrapper" tooltip="Номер службы поддержки, который будет вставлен в шаблон голосовая почта на электронную почту.">
                                     <span class="tooltip"/>
-                                    <label for="vm_to_email_support_number">Support Number:</label>
+                                    <label for="vm_to_email_support_number">Номер службы поддержки:</label>                                        н
                                 </span>
                                 <input id="vm_to_email_support_number" name="notifications.voicemail_to_email.support_number" type="text"  value="${data.notifications.voicemail_to_email.support_number}" />
                             </li>
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Input the support email address that will be inserted in the voicemail-to-email template">
+                                <span class="tooltip-wrapper" tooltip="Email службы поддержки, который будет вставлен в шаблон голосовая почта на электронную почту.">
                                     <span class="tooltip"/>
-                                    <label for="vm_to_email_support_email">Support Email</label>
+                                    <label for="vm_to_email_support_email">Email службы поддержки</label>
                                 </span>
                                 <input id="vm_to_email_support_email" name="notifications.voicemail_to_email.support_email" type="text"  value="${data.notifications.voicemail_to_email.support_email}" />
                             </li>
                             <li>
-                                <span class="tooltip-wrapper" tooltip="This will be displayed as the Send form field in the Voicemail-To-Email template">
+                                <span class="tooltip-wrapper" tooltip="Это будет отображаться в поле шаблона формы отправки в голосовой почты на электронную почту.">
                                     <span class="tooltip"/>
-                                    <label for="vm_to_email_send_from">Send from</label>
+                                    <label for="vm_to_email_send_from">От кого</label>
                                 </span>
                                 <input id="vm_to_email_send_from" name="notifications.voicemail_to_email.send_from" type="text"  value="${data.notifications.voicemail_to_email.send_from}"/>
                             </li>
@@ -249,12 +249,12 @@
         <div class="buttons_wrapper">
             <ul class="buttons right accounts">
                 {{if data.id}}
-                    <li><a class="account-switch fancy_button blue" href="#">Use account</a></li>
+                    <li><a class="account-switch fancy_button blue" href="#">Использование учетной записи</a></li>
                 {{/if}}
                 {{if data.id}}
-                    <li><a class="account-delete delete-btn fancy_button red" href="#">Delete</a></li>
+                    <li><a class="account-delete delete-btn fancy_button red" href="#">Удалить</a></li>
                 {{/if}}
-                <li><a class="account-save save-btn fancy_button green" href="#">Save</a></li>
+                <li><a class="account-save save-btn fancy_button green" href="#">Сохранить</a></li>
             </ul>
             <div class="clear"/>
         </div>
