@@ -35,20 +35,20 @@
                                             {{/if}}
                                         {{/each}}
                                         </select>
-                                        <span id="edit_link"><a class="inline_action" data-action="edit" href="#">Edit</a>&nbsp;|</span>
-                                        <a class="inline_action" data-action="create" href="#">Create</a>
+                                        <span id="edit_link"><a class="inline_action" data-action="edit" href="#">Редактировать</a>&nbsp;|</span>
+                                        <a class="inline_action" data-action="create" href="#">Создать</a>
                                     </li>
                                 {{/if}}
                                 <li>
                                     <span class="tooltip-wrapper" tooltip="Outside number you wish to reach">
-                                        <span class="tooltip"/><label for="call_forward_number">Number:</label>
+                                        <span class="tooltip"/><label for="call_forward_number">Номер:</label>
                                     </span>
                                     <input id="call_forward_number" name="call_forward.number" type="text" value="${data.call_forward.number}"/>
                                 </li>
                                 <li>
-                                    <span class="tooltip-wrapper" tooltip="Do you want this device enabled?">
+                                    <span class="tooltip-wrapper" tooltip="Вы хотите включить это устройство?">
                                         <span class="tooltip"/>
-                                        <label for="call_forward.enabled">Enabled:</label>
+                                        <label for="call_forward.enabled">Включить:</label>
                                     </span>
                                     {{if data.call_forward.enabled === false}}
                                         <input id="call_forward_enabled" name="call_forward.enabled" type="checkbox"/>
@@ -71,7 +71,7 @@
 
                     <span class="advanced_settings_box">
                         <span>
-                            <h2 id="advanced_settings_link">Advanced Settings</h2>
+                            <h2 id="advanced_settings_link">Дополнительные настройки</h2>
                         </span>
 
                         <span class="advanced_tabs_wrapper">
@@ -118,9 +118,9 @@
                 <div class="buttons_wrapper">
                     <ul class="buttons right devices">
                         {{if data.id}}
-                            <li><a class="device-delete delete-btn fancy_button red" href="#">Delete</a></li>
+                            <li><a class="device-delete delete-btn fancy_button red" href="#">Удалить</a></li>
                         {{/if}}
-                        <li><a class="device-save save-btn fancy_button green" href="#">Save</a></li>
+                        <li><a class="device-save save-btn fancy_button green" href="#">Сохранить</a></li>
                     </ul>
                     <div class="clear"></div>
                 </div>

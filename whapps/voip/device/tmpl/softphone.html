@@ -105,39 +105,39 @@
 
                 <div id="caller_id">
                     <fieldset>
-                        <legend>In-House Calls</legend>
+                        <legend>Внутренний звонок</legend>
                         <ul class="controls">
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Define the Caller ID Name of this Device for In-House Calls.<br/>If this Caller ID Name isn't set, then the user's Caller ID will be used.<br/> (or the account's Caller ID Name will be used if none of those is set)">
+                                <span class="tooltip-wrapper" tooltip="Установить Caller ID имя  этого устройства для внутренних звонков.<br/>Если это Caller ID имя не установлено, то будет использоваться Caller ID имя пользователя.<br/> (или Caller ID имя учетной записи, если ни одна из этих настроек не установлена)">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_name_internal">Caller ID Name:</label>
+                                    <label for="caller_id_name_internal">Caller ID Имя:</label>
                                 </span>
                                 <input id="caller_id_name_internal" name="caller_id.internal.name" type="text" placeholder="Name" value="${data.caller_id.internal.name}" />
                             </li>
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Define the Caller ID Number of this Device for In-House Calls.<br/>If this Caller ID Number isn't set, then the user's Caller ID will be used.<br/> (or the account's Caller ID Number will be used if none of those is set)">
+                                <span class="tooltip-wrapper" tooltip="Определить Caller ID номер этого устройства для внутренних вызовов.<br/>Если этот Caller ID номер не установлен, то будет использоваться Caller ID номер пользователя. <br/> (или Caller ID имя учетной записи, если ни одна из этих настроек не установлена)">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_number_internal">Caller ID Number:</label>
+                                    <label for="caller_id_number_internal">Caller ID Номер:</label>
                                 </span>
-                                <input id="caller_id_number_internal" name="caller_id.internal.number" type="text" placeholder="555-555-5555" value="${data.caller_id.internal.number}" />
+                                <input id="caller_id_number_internal" name="caller_id.internal.number" type="text" placeholder="089-500-5555" value="${data.caller_id.internal.number}" />
                             </li>
                         </ul>
                     </fieldset>
 
                     <fieldset>
-                        <legend>Outbound Calls</legend>
+                        <legend>Исходящие звонки</legend>
                         <ul class="controls">
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Define the Caller ID Name of this Device for Outbound Calls.<br/>If this Caller ID Name isn't set, then the user's Caller ID will be used.<br/> (or the account's Caller ID Name will be used if none of those is set)">
+                                <span class="tooltip-wrapper" tooltip="Установить Caller ID имя устройсва для исходящих звонков.<br/>Если это Caller ID имя не установлено, то будет использоваться Caller ID имя пользователя.<br/> (или Caller ID имя учетной записи, если ни одна из этих настроек не установлена)">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_name_external">Caller ID Name:</label>
+                                    <label for="caller_id_name_external">Caller ID Имя:</label>
                                 </span>
                                 <input id="caller_id_name_external" name="caller_id.external.name" type="text" placeholder="Name" value="${data.caller_id.external.name}" />
                             </li>
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Define the Caller ID Number of this Device for Outbound Calls.<br/>If this Caller ID Number isn't set, then the user's Caller ID will be used.<br/> (or the account's Caller ID Number will be used if none of those is set)">
+                                <span class="tooltip-wrapper" tooltip="Установить Caller ID номер устройсва для исходящих звонков.<br/>Если это Caller ID номер не установлено, то будет использоваться Caller ID номер пользователя.<br/> (или Caller ID имя учетной записи, если ни одна из этих настроек не установлена)">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_number_external">Caller ID Number:</label>
+                                    <label for="caller_id_number_external">Caller ID Номер:</label>
                                 </span>
                                 <input id="caller_id_number_external" name="caller_id.external.number" type="text" placeholder="555-555-5555" value="${data.caller_id.external.number}" />
                             </li>
@@ -150,12 +150,12 @@
 
                 <div id="SIP Settings">
                     <fieldset>
-                        <legend>SIP Settings</legend>
+                        <legend>SIP Настройки</legend>
                         <ul class="controls">
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Select your authentication method">
+                                <span class="tooltip-wrapper" tooltip="Выберите метод проверки подлинности">
                                     <span class="tooltip"/>
-                                    <label for="sip_method">Authentication Method:</label>
+                                    <label for="sip_method">Метод проверки подлинности:</label>
                                 </span>
                                 <select name="sip.method" id="sip_method">
                                     {{each(key, val) field_data.sip.methods}}
@@ -169,7 +169,7 @@
                             </li>
 
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Enter your SIP Invite Format">
+                                <span class="tooltip-wrapper" tooltip="Введите формат SIP приглашения">
                                     <span class="tooltip"/>
                                     <label for="sip_invite_format">Invite Format:</label>
                                 </span>
@@ -184,9 +184,9 @@
                                 </select>
                             </li>
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Enter the expiration time of this device (in seconds)">
+                                <span class="tooltip-wrapper" tooltip="Введите срок действия регистрации для этого устройства (в секундах)">
                                     <span class="tooltip"/>
-                                    <label for="sip_expire_seconds">Expire Seconds:</label>
+                                    <label for="sip_expire_seconds">Срок действия:</label>
                                 </span>
                                 <input id="sip_expire_seconds" name="sip.expire_seconds" type="text"  value="${data.sip.expire_seconds}" />
                             </li>
@@ -199,12 +199,12 @@
 
                 <div id="audio_settings">
                     <fieldset>
-                        <legend>Music on Hold</legend>
+                        <legend>Музыка при ожыдании</legend>
                         <ul class="controls">
                             <li>
-                                <span class="tooltip-wrapper" tooltip="Select the media file that you want to be played by default when it\'s not set on a user or a device.">
+                                <span class="tooltip-wrapper" tooltip="Выберите файл, для проигрования во время ожидания ответа, когда не установлена для пользователя или устройство.">
                                     <span class="tooltip"/>
-                                    <label for="Music on Hold">Music on hold:</label>
+                                    <label for="Music on Hold">Музыка при ожыдании:</label>
                                 </span>
                                  <select name="music_on_hold.media_id" id="music_on_hold_media_id">
                                 {{each field_data.music_on_hold}}
@@ -215,8 +215,8 @@
                                     {{/if}}
                                 {{/each}}
                                 </select>
-                                <span id="edit_link_media"><a class="inline_action_media" data-action="edit" href="#">Edit</a>&nbsp;|</span>
-                                <a class="inline_action_media" data-action="create" href="#">Create</a>
+                                <span id="edit_link_media"><a class="inline_action_media" data-action="edit" href="#">Редактировать</a>&nbsp;|</span>
+                                <a class="inline_action_media" data-action="create" href="#">Создать</a>
                             </li>
                         </ul>
                     </fieldset>
@@ -313,9 +313,9 @@
             <div class="buttons_wrapper">
                 <ul class="buttons right devices">
                     {{if data.id}}
-                        <li><a class="device-delete delete-btn fancy_button red" href="#">Delete</a></li>
+                        <li><a class="device-delete delete-btn fancy_button red" href="#">Удалить</a></li>
                     {{/if}}
-                    <li><a class="device-save save-btn fancy_button green" href="#">Save</a></li>
+                    <li><a class="device-save save-btn fancy_button green" href="#">Сохранить</a></li>
                 </ul>
                 <div class="clear"/>
             </div>
