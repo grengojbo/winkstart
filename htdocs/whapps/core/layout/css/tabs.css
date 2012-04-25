@@ -80,13 +80,13 @@ ul.settings_tabs a.current,ul.settings_tabs a.current:hover,ul.settings_tabs li.
 	padding-left: 18px;
 	float: left;
 	display: block; 
-    width: 124px;
+    width: 180px;
     margin: 0;
 }
 
 .advanced_tabs_wrapper {
     display: inline-block;
-    width: 658px;
+    width: 602px;
     height: 30px;
 }
 
