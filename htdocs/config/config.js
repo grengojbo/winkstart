@@ -1,7 +1,7 @@
 ( function(winkstart, amplify, $) {
 
     winkstart.config =  {
-        //was winkstart.debug
+        /* Was winkstart.debug */
         debug: false,
 
         //was winkstart.realm_suffix

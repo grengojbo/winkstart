@@ -5,7 +5,7 @@
         debug: false,
 
         /* Customized name displayed in the application (login page, resource module..) */
-        company_name: '2600hz',
+        company_name: 'Lincom-3000',
 
         base_urls: {
             'u.2600hz.com': {
