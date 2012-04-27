@@ -2,13 +2,13 @@
     <div class="inner">
         <form id="conference-form" action="" method="post" class="niceform">
             {{if data.id}}
-                <h1>Edit Conference</h1>
+                <h1>Редактировать конференцию</h1>
             {{else}}
-                <h1>Create Conference</h1>
+                <h1>Создать конференцию</h1>
             {{/if}}
 
             <ul class="settings_tabs settings1">
-                <li><a href="#">Basic Settings</a></li>
+                <li><a href="#">Базовые настройки</a></li>
                 {{if data.id}}
                     <!--<li><a href="#">Conference Viewer</a></li>-->
                 {{/if}}
@@ -23,14 +23,14 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Friendly name for this conference">
                                     <span class="tooltip"/>
-                                    <label for="name">Conference Name:</label>
+                                    <label for="name">Имя конференции:</label>
                                 </span>
                                 <input id="name" name="name" type="text" value="${data.name}"/>
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Select the user who owns this conference">
                                     <span class="tooltip"/>
-                                    <label for="owner_id">Assign To:</label>
+                                    <label for="owner_id">Назначить:</label>
                                 </span>
                                 <select name="owner_id" id="owner_id">
                                 {{each field_data.users}}
@@ -62,13 +62,13 @@
 
             <span class="advanced_settings_box">
                 <span id="advanced_settings_link">
-                    <h2>Advanced Settings</h2>
+                    <h2>Дополнительные настройки</h2>
                 </span>
 
                 <span class="advanced_tabs_wrapper">
                     <ul class="advanced_tabs settings2">
-                        <li><a href="#"><span  class="icon sip"/>Options</a></li>
-                        <li><a href="#"><span  class="icon conference"/>Conference server</a></li>
+                        <li><a href="#"><span  class="icon sip"/>Опции</a></li>
+                        <li><a href="#"><span  class="icon conference"/>Сервер конференции</a></li>
                     </ul>
                 </span>
 
@@ -82,7 +82,7 @@
                         <li>
                             <span class="tooltip-wrapper" tooltip="Do you want to play names of members when they enter the conference">
                                 <span class="tooltip"/>
-                                <label for="member_play_name">Play name upon entry?</label>
+                                <label for="member_play_name">Играть имя при входе?</label>
                             </span>
                             {{if data.play_name_on_join}}
                             <input id="play_name_on_join" name="play_name_on_join" type="checkbox" checked="checked"/>
@@ -93,7 +93,7 @@
                         <li>
                             <span class="tooltip-wrapper" tooltip="Do you want the members to join the conference muted by default?">
                                 <span class="tooltip"/>
-                                <label for="member_join_muted">Join the conference muted?</label>
+                                <label for="member_join_muted">Подключится к конференции без "микрофона"?</label>
                             </span>
                             {{if data.member.join_muted}}
                             <input id="member_join_muted" name="member.join_muted" type="checkbox" checked="checked"/>
@@ -104,7 +104,7 @@
                         <li>
                             <span class="tooltip-wrapper" tooltip="Do you want the members to join the conference deaf by default?">
                                 <span class="tooltip"/>
-                                <label for="member_join_deaf">Join the conference deaf?</label>
+                                <label for="member_join_deaf">Подключится к конференции без звука?</label>
                             </span>
                             {{if data.member.join_deaf}}
                             <input id="member_join_deaf" name="member.join_deaf" type="checkbox" checked="checked"/>
@@ -120,7 +120,7 @@
                         <li>
                             <span class="tooltip-wrapper" tooltip="A comma separated list of numbers, that will be assigned to the conference.<br>Unless you plan to use the 'Conference Service' callflow node - don't worry about this field">
                                 <span class="tooltip"/>
-                                <label for="member_numbers_string">Numbers:</label>
+                                <label for="member_numbers_string">Номера:</label>
                             </span>
                             <input id="member_numbers_string" name="member.numbers_string" type="text" value="${data.member.numbers_string}"/>
                         </li>
@@ -132,9 +132,9 @@
         <div class="buttons_wrapper">
             <ul class="buttons right conferences">
                 {{if data.id}}
-                    <li><a class="conference-delete delete-btn fancy_button red" href="#">Delete</a></li>
+                    <li><a class="conference-delete delete-btn fancy_button red" href="#">Отмена</a></li>
                 {{/if}}
-                <li><a class="conference-save save-btn fancy_button green" href="#">Save</a></li>
+                <li><a class="conference-save save-btn fancy_button green" href="#">Сохранить</a></li>
             </ul>
             <div class="clear"/>
         </div>
