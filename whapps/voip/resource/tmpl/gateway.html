@@ -1,32 +1,32 @@
 <div>
     <fieldset>
-        <legend>Gateway</legend>
+        <legend>Шлюз</legend>
         <ul class="controls">
             <li>
                 <span class="tooltip-wrapper" tooltip="The authentication realm used if challenged by the server">
                     <span class="tooltip"/>
-                    <label for="gateways_realm">Realm</label>
+                    <label for="gateways_realm">Реалм</label>
                 </span>
                 <input id="gateways_realm" name="gateways[${index}].realm" type="text" value="${data.realm}" />
             </li>
             <li>
                 <span class="tooltip-wrapper" tooltip="The authentication username used if challenged by the server">
                     <span class="tooltip"/>
-                    <label for="gateways_username">Username</label>
+                    <label for="gateways_username">Логин</label>
                 </span>
                 <input id="gateways_username" name="gateways[${index}].username" type="text" value="${data.username}" />
             </li>
             <li>
                 <span class="tooltip-wrapper" tooltip="The authentication password used if challenged by the server">
                     <span class="tooltip"/>
-                    <label for="gateways_password">Password</label>
+                    <label for="gateways_password">Пароль</label>
                 </span>
                 <input id="gateways_password" name="gateways[${index}].password" type="password" value="${data.password}" />
             </li>
             <li>
                 <span class="tooltip-wrapper" tooltip="The format of the request URI used in the SIP invite">
                     <span class="tooltip"/>
-                    <label for="gateways_invite_format">Invite Format</label>
+                    <label for="gateways_invite_format">Формат приглашения</label>
                 </span>
                 <select name="gateways[${index}].invite_format" id="gateways_invite_format">
                     {{each(key, val) field_data.gateways.invite_formats}}
@@ -41,14 +41,14 @@
             <li>
                 <span class="tooltip-wrapper" tooltip="Additional characters to prepend to the front of the dialed number">
                     <span class="tooltip"/>
-                    <label for="gateway_prefix">Prefix</label>
+                    <label for="gateway_prefix">Префикс</label>
                 </span>
                 <input id="gateways_prefix" name="gateways[${index}].prefix" type="text" value="${data.prefix}" />
             </li>
             <li>
                 <span class="tooltip-wrapper" tooltip="Additional characters to append to the front of the dialed number">
                     <span class="tooltip"/>
-                    <label for="gateway_suffix">Suffix</label>
+                    <label for="gateway_suffix">Суфикс</label>
                 </span>
                 <input id="gateways_suffix" name="gateways[${index}].suffix" type="text" value="${data.suffix}" />
             </li>
