@@ -2,13 +2,13 @@
     <div class="inner">
         <form id="directory-form" action="" method="post" class="niceform">
             {{if data.id}}
-                <h1>Edit Directory</h1>
+                <h1>Редактировать каталог</h1>
             {{else}}
-                <h1>Create Directory</h1>
+                <h1>Создать каталог</h1>
             {{/if}}
 
             <ul class="settings_tabs settings1">
-                <li><a href="javascript:void(0);">Basic Settings</a></li>
+                <li><a href="javascript:void(0);">Основные параметры</a></li>
             </ul>
 
             <div class="clear"></div>
@@ -20,7 +20,7 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Friendly name for this Directory">
                                     <span class="tooltip"/>
-                                    <label for="name">Name:</label>
+                                    <label for="name">Имя:</label>
                                 </span>
                                 <input id="name" name="name" type="text" value="${data.name}" />
                             </li>
@@ -32,15 +32,15 @@
                     </div>-->
                     <div id="tab_users">
                         <div class="row title">
-                            <div class="column first">User&nbsp;&nbsp;<span class="icon medium user"/></div>
-                            <div class="column second">Callflow&nbsp;&nbsp;<span class="icon medium callflow"/></div>
-                            <div class="column third">Remove</div>
+                            <div class="column first">Пользователь&nbsp;&nbsp;<span class="icon medium user"/></div>
+                            <div class="column second">Поток вызова&nbsp;&nbsp;<span class="icon medium callflow"/></div>
+                            <div class="column third">Удалить</div>
                         </div>
                         <div class="rows">
                         </div>
                     </div>
                     <div class="add_user">
-                        <div class="add_user_title">Add User</div>
+                        <div class="add_user_title">Добавить пользователя</div>
                         <div class="add_content_wrapper">
                             <div class="add_user_fields">
                                 <ul class="controls">
@@ -49,9 +49,9 @@
                                             <span class="tooltip-wrapper" tooltip="Choose a user to add to this directory">
                                                 <span class="tooltip"/>
                                             </span>
-                                            <label>User</label>
+                                            <label>Пользователь</label>
                                             <select name="user_id" id="user_id">
-                                                <option id="empty_option_user" value="empty_option_user">-- Select --</option>
+                                                <option id="empty_option_user" value="empty_option_user">-- Выбрать --</option>
                                                 {{each field_data.users}}
                                                     <option value="${id}" id="option_user_${id}">${first_name} ${last_name}</option>
                                                 {{/each}}
@@ -63,9 +63,9 @@
                                         <span class="tooltip-wrapper" tooltip="Choose the callflow to use in order to reach the selected user via this directory">
                                             <span class="tooltip"/>
                                         </span>
-                                        <label>Callflow</label>
+                                        <label>Поток вызова</label>
                                         <select name="callflow_id" id="callflow_id">
-                                            <option id="empty_option_callflow" value="empty_option_callflow">-- Select --</option>
+                                            <option id="empty_option_callflow" value="empty_option_callflow">-- Выюрать --</option>
                                             {{each field_data.callflows}}
                                                 <option value="${id}" id="option_callflow_${id}">&nbsp;{{each(k,v) numbers}}${v}&nbsp;{{/each}}</option>
                                             {{/each}}
@@ -76,7 +76,7 @@
                             </div>
                             <div class="add_user_div">
                                 <span class="add_user_icon"/>
-                                <a class="add_user_link" href="javascript:void(0);" data-directory_id="${data.id}">Add this user to the directory</a>
+                                <a class="add_user_link" href="javascript:void(0);" data-directory_id="${data.id}">Добавить этого пользователя в каталог</a>
                                 <div class="clear"/>
                             </div>
                         </div>
@@ -91,12 +91,12 @@
 
             <span class="advanced_settings_box">
                 <span>
-                    <h2 id="advanced_settings_link">Advanced Settings</h2>
+                    <h2 id="advanced_settings_link">Дополнительные настройки</h2>
                 </span>
 
                 <span class="advanced_tabs_wrapper">
                     <ul class="advanced_tabs settings2">
-                        <li><a href="#"><span class="icon wrench_screw"/>Options</a></li>
+                        <li><a href="#"><span class="icon wrench_screw"/>Опции</a></li>
                     </ul>
                 </span>
 
@@ -110,21 +110,21 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Count of how many DTMFs must be collected before processing begins.">
                                     <span class="tooltip"/>
-                                    <label for="min_dtmf">Minimum number of input:</label>
+                                    <label for="min_dtmf">Минимальное количество входящих:</label>
                                 </span>
                                 <input id="min_dtmf" name="min_dtmf" type="text" value="${data.min_dtmf}" />
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Count of the most DTMFs collected, once reached the list of matches is played. If set to 0, then there is no limit to the number of DTMFs collected.">
                                     <span class="tooltip"/>
-                                    <label for="max_dtmf">Max number of input:</label>
+                                    <label for="max_dtmf">Максимальное количество входящих:</label>
                                 </span>
                                 <input id="max_dtmf" name="max_dtmf" type="text" value="${data.max_dtmf}" />
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="If only one match is found, is the caller prompted to confirm the match before connecting">
                                     <span class="tooltip"/>
-                                    <label for="confirm_match">Confirm Match?</label>
+                                    <label for="confirm_match">Подтвердить соответствие?</label>
                                 </span>
                                 {{if data.confirm_match == true}}
                                     <input id="confirm_match" name="confirm_match" type="checkbox" checked="checked"/>
@@ -135,7 +135,7 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Select your sort method">
                                     <span class="tooltip"/>
-                                    <label for="sort_by">Sort by:</label>
+                                    <label for="sort_by">Сортировать за:</label>
                                 </span>
                                 <select name="sort_by" id="sort_by">
                                     {{each(key, val) field_data.sort_by}}
@@ -155,9 +155,9 @@
             <div class="buttons_wrapper">
                 <ul class="buttons right directories">
                     {{if data.id}}
-                        <li><a class="directory-delete delete-btn fancy_button red" href="#">Delete</a></li>
+                        <li><a class="directory-delete delete-btn fancy_button red" href="#">Отмена</a></li>
                     {{/if}}
-                    <li><a class="directory-save save-btn fancy_button green" href="#">Save</a></li>
+                    <li><a class="directory-save save-btn fancy_button green" href="#">Сохранить</a></li>
                 </ul>
                 <div class="clear"/>
             </div>

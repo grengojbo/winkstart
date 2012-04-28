@@ -5,7 +5,7 @@
                 <form name="form" method="post" action="#">
                     <ul class="controls">
                         <li>
-                            <label for="directory_selector">Directory</label>
+                            <label for="directory_selector">Каталог</label>
                             <select id="directory_selector">
                                 {{each(i, item) items}}
                                     {{if selected == item.id}}
@@ -15,8 +15,8 @@
                                     {{/if}}
                                 {{/each}}
                             </select>
-                            <span id="edit_link"><a class="inline_action" data-action="edit" href="#">Edit</a>&nbsp;|</span>
-                            <a class="inline_action" data-action="create" href="#">Create</a>
+                            <span id="edit_link"><a class="inline_action" data-action="edit" href="#">Редактировать</a>&nbsp;|</span>
+                            <a class="inline_action" data-action="create" href="#">Создать</a>
                         </li>
                     </ul>
                 </form>
