@@ -4,11 +4,11 @@
             {{if data.id}}
                 <h1>Edit ${data.type.charAt(0).toUpperCase() + data.type.slice(1)} Carrier</h1>
             {{else}}
-                <h1>Add Carrier</h1>
+                <h1>Добавить Carrier</h1>
             {{/if}}
 
             <ul class="settings_tabs settings1">
-                <li><a href="#">Basic Settings</a></li>
+                <li><a href="#">Основные параметры</a></li>
             </ul>
 
             <div class="clear"></div>
@@ -25,7 +25,7 @@
                                 <li>
                                     <span class="tooltip-wrapper" tooltip="Global Carriers are system-wide trunks">
                                         <span class="tooltip"/>
-                                        <label for="type">Carrier Type:</label>
+                                        <label for="type">Тип Carrier:</label>
                                     </span>
                                     <select id="type" name="type">
                                         <option value="local">Local</option>
@@ -36,35 +36,35 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Friendly name of this carrier">
                                     <span class="tooltip"/>
-                                    <label for="name">Name:</label>
+                                    <label for="name">Имя:</label>
                                 </span>
                                 <input id="name" name="name" type="text" value="${data.name}" />
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="The destination server domain or IP">
                                     <span class="tooltip"/>
-                                    <label for="gateways_server">Server</label>
+                                    <label for="gateways_server">Сервер</label>
                                 </span>
                                 <input id="gateways_server" name="gateways[0].server" type="text" value="${data.gateways[0].server}" data-prev_value="${data.gateways[0].server}"/>
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="The authentication username used if challenged by the server">
                                     <span class="tooltip"/>
-                                    <label for="gateways_username">Username</label>
+                                    <label for="gateways_username">Имя пользователя</label>
                                 </span>
                                 <input id="gateways_username" name="gateways[0].username" type="text" value="${data.gateways[0].username}" />
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="The authentication password used if challenged by the server">
                                     <span class="tooltip"/>
-                                    <label for="gateways_password">Password</label>
+                                    <label for="gateways_password">Пароль</label>
                                 </span>
                                 <input id="gateways_password" name="gateways[0].password" type="password" value="${data.gateways[0].password}" />
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="The priority determines which carrier is tried first when multiple carriers are set up for the same rule (more than 1 10-digit US carrier, etc)">
                                     <span class="tooltip"/>
-                                    <label for="weight_cost">Priority:</label>
+                                    <label for="weight_cost">Приоритет:</label>
                                 </span>
                                 <span class="weight-wrapper">
                                     <input id="weight_cost" name="weight_cost" type="slider" value="${data.weight_cost}" />
@@ -73,7 +73,7 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="When set to false this carrier will be ignored by the call routing engine">
                                     <span class="tooltip"/>
-                                    <label for="enabled">Enabled</label>
+                                    <label for="enabled">Включено</label>
                                 </span>
                                 {{if data.enabled}}
                                     <input id="enabled" name="enabled" type="checkbox" checked="checked"/>
@@ -92,14 +92,14 @@
 
             <span class="advanced_settings_box">
                 <span>
-                    <h2 id="advanced_settings_link">Advanced Settings</h2>
+                    <h2 id="advanced_settings_link">Дополнительные настройки</h2>
                 </span>
 
                 <span class="advanced_tabs_wrapper">
                     <ul class="advanced_tabs settings2">
-                        <li><a href="#"><span  class="icon wrench_screw"/>Options</a></li>
-                        <li><a href="#"><span  class="icon audio"/>Gateway Codecs</a></li>
-                        <li><a href="#"><span  class="icon device"/>Caller-ID Options</a></li>
+                        <li><a href="#"><span  class="icon wrench_screw"/>Опции</a></li>
+                        <li><a href="#"><span  class="icon audio"/>Кодеки шлюза</a></li>
+                        <li><a href="#"><span  class="icon device"/>Caller-ID опции</a></li>
                     </ul>
                 </span>
 
@@ -113,14 +113,14 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="The authentication realm used if challenged by the server">
                                     <span class="tooltip"/>
-                                    <label for="gateways_realm">Realm</label>
+                                    <label for="gateways_realm">Реалм</label>
                                 </span>
                                 <input id="gateways_realm" name="gateways[0].realm" type="text" value="${data.gateways[0].realm}" />
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Some upstream carriers need to know which specific customer is placing outbound calls. Activating this field puts the account realm into the From: header for all INVITEs so that the upstream carrier can tell which customer is actually making a call. Useful for billing and LCR purposes. WARNING: This also is used in authentication. If you are also authenticating the calls, this will change the authentication realm.">
                                     <span class="tooltip"/>
-                                    <label for="gateways_format_from_uri">Pass Realm in INVITE:</label>
+                                    <label for="gateways_format_from_uri">Пароль реалма по приглашению:</label>
                                 </span>
                                 {{if data.gateways[0].format_from_uri == true}}
                                     <input type="checkbox" id="gateways_format_from_uri" name="gateways[0].format_from_uri" checked="checked"/>
@@ -131,7 +131,7 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="A regular expression used by the routine engine to determine when to use this carrier">
                                     <span class="tooltip"/>
-                                    <label for="rules">Rules:</label>
+                                    <label for="rules">Правила:</label>
                                 </span>
                                 <span class="rules_span">
                                     <select name="rules_dropdown" id="rules_dropdown">
@@ -149,7 +149,7 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="The format of the request URI used in the SIP invite">
                                     <span class="tooltip"/>
-                                    <label for="gateways_invite_format">Invite Format</label>
+                                    <label for="gateways_invite_format">Формат приглашения:</label>
                                 </span>
                                 <select name="gateways[0].invite_format" id="gateways_invite_format">
                                     {{each(key, val) field_data.gateways.invite_formats}}
@@ -164,14 +164,14 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Additional characters to prepend to the front of the dialed number">
                                     <span class="tooltip"/>
-                                    <label for="gateway_prefix">Prefix</label>
+                                    <label for="gateway_prefix">Префикс</label>
                                 </span>
                                 <input id="gateways_prefix" name="gateways[0].prefix" type="text" value="${data.gateways[0].prefix}" />
                             </li>
                             <li>
                                 <span class="tooltip-wrapper" tooltip="Additional characters to append to the front of the dialed number">
                                     <span class="tooltip"/>
-                                    <label for="gateway_suffix">Suffix</label>
+                                    <label for="gateway_suffix">Суфикс</label>
                                 </span>
                                 <input id="gateways_suffix" name="gateways[0].suffix" type="text" value="${data.gateways[0].suffix}" />
                             </li>
@@ -189,7 +189,7 @@
                 </div>
                 <div id="audio_settings">
                     <fieldset>
-                        <legend>Audio Codecs</legend>
+                        <legend>Аудио кодеки</legend>
                         <ul class="controls">
                             {{each(key, val) field_data.gateways.codecs}}
                             <li>
@@ -211,7 +211,7 @@
                             <li>
                                 <span class="tooltip-wrapper" tooltip="An arbitrary caller-id type to search for when this route is used">
                                     <span class="tooltip"/>
-                                    <label for="caller_id_options_type">Type</label>
+                                    <label for="caller_id_options_type">Тип</label>
                                 </span>
                                 <select name="caller_id_options.type" id="caller_id_options_type">
                                     {{each(key, val) field_data.caller_id_options.type}}
@@ -231,9 +231,9 @@
         <div class="buttons_wrapper">
             <ul class="buttons right resources">
                 {{if data.id}}
-                    <li><a class="resource-delete delete-btn fancy_button red" href="#">Delete</a></li>
+                    <li><a class="resource-delete delete-btn fancy_button red" href="#">Отмена</a></li>
                 {{/if}}
-                <li><a class="resource-save save-btn fancy_button green" href="#">Save</a></li>
+                <li><a class="resource-save save-btn fancy_button green" href="#">Сохранить</a></li>
             </ul>
             <div class="clear"/>
         </div>
