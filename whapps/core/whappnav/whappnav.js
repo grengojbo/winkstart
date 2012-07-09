@@ -36,12 +36,10 @@ winkstart.module('core', 'whappnav', {
     {
         add: function(args) {
             var THIS = this,
-                inserted = false,
                 whapp_list_html = $(THIS.config.targets.nav_bar),
                 whapp_html = THIS.templates.whapp.tmpl({
                     name: args.name,
-                    whapp: winkstart.apps[args.name],
-                    weight: args.weight || 0
+                    whapp: winkstart.apps[args.name]
                 }),
                 whapp_divider_html = THIS.templates.whapp_divider.tmpl();
 
@@ -49,8 +47,6 @@ winkstart.module('core', 'whappnav', {
                 ev.preventDefault();
 
                 if(!(whapp_html.hasClass('disabled'))) {
-                    $('.whapps .whapp > a').removeClass('activate');
-                    $(this).addClass('activate');
                     winkstart.publish(args.name + '.activate', {});
                 }
             });
@@ -72,43 +68,9 @@ winkstart.module('core', 'whappnav', {
                     }
                 });
 
-            $('.whapp', whapp_list_html).each(function(index) {
-                var weight = $(this).dataset('weight');
-
-                if(args.weight < weight) {
-                    $(this)
-                        .before(whapp_html)
-                        .before(whapp_divider_html);
-                    inserted = true;
-
-                    return false;
-                }
-                else if(index >= $('.whapp', whapp_list_html).length - 1) {
-                    $(this)
-                        .after(whapp_html)
-                        .after(whapp_divider_html);
-                    inserted = true;
-
-                    return false;
-                }
-            });
-
-            if(!inserted) {
-                (whapp_list_html)
-                    .prepend(whapp_html)
-                    .prepend(whapp_divider_html);
-            }
-
-            var topbar = $('body > .topbar'),
-                nb = topbar.data('nb') || 0;
-
-            topbar.data('nb', nb + 1);
-
-            if(topbar.data('nb') > 6) {
-                topbar.css({
-                    'min-width': '+= 140'
-                });
-            }
+            (whapp_list_html)
+                .append(whapp_html)
+                .append(whapp_divider_html);
         },
 
         disable_whapp: function(whapp_name) {
@@ -160,9 +122,6 @@ winkstart.module('core', 'whappnav', {
 
             $('> a', whapp_module_html).click(function(ev) {
                 ev.preventDefault();
-
-                $('.whapps .whapp > a').removeClass('activate');
-                $(this).parents('.whapp').find('a').addClass('activate');
 
                 winkstart.publish(data.whapp + '.module_activate', { name: data.module });
             });

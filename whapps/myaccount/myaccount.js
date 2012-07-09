@@ -40,26 +40,18 @@ winkstart.module('myaccount', 'myaccount', {
 
         THIS.uninitialized_count = THIS._count(THIS.modules);
 
-        THIS.initialization_check();
-
         THIS.whapp_config();
     },
     {
-        whapp_vars: {
-            billing_provider: 'braintree'
-        },
-
         /* A modules object is required for the loading routine.
          * The format is as follows:
          * <module name>: <initialization status>
          */
         modules: {
-            'app_store': false,
+            //'app_store': false,
             'billing': false,
             'personal_info': false,
-            'nav': false,
-            'statistics': false,
-            'credits': false
+            'nav': false
         },
         /* The following code is generic and should be abstracted.
          * For the time being, you can just copy and paste this
@@ -74,9 +66,10 @@ winkstart.module('myaccount', 'myaccount', {
         initialized: function(user_data) {
             var THIS = this;
 
+            winkstart.config.advancedView = user_data.advanced;
             THIS.is_initialized = true;
             THIS.list_submodules.list.sort();
-            //THIS.setup_page();
+            THIS.setup_page();
         },
 
         activate: function(user_data) {
@@ -84,7 +77,6 @@ winkstart.module('myaccount', 'myaccount', {
 
             THIS.whapp_auth(function() {
                 THIS.initialization_check(user_data);
-                winkstart.config.advancedView = user_data.advanced;
             });
         },
 
@@ -93,7 +85,6 @@ winkstart.module('myaccount', 'myaccount', {
 
             if (!THIS.is_initialized) {
                 // Load the modules
-                
                 $.each(THIS.modules, function(k, v) {
                     if(!v) {
                         THIS.modules[k] = true;
@@ -106,9 +97,8 @@ winkstart.module('myaccount', 'myaccount', {
                         });
                     }
                 })
-
             } else {
-                THIS.setup_page(user_data);
+                THIS.setup_page();
             }
         },
 
@@ -148,10 +138,9 @@ winkstart.module('myaccount', 'myaccount', {
          */
 
         // A setup_page function is required for the copy and paste code
-        setup_page: function(user_data) {
+        setup_page: function() {
             var THIS = this;
 
-            winkstart.publish('nav.activate', user_data);
             //winkstart.publish('myaccount.display');
         },
 
@@ -165,8 +154,6 @@ winkstart.module('myaccount', 'myaccount', {
                 account_id: winkstart.apps['auth'].account_id,
                 user_id: winkstart.apps['auth'].user_id
             }, THIS.orig_whapp_config);
-
-            $.extend(winkstart.apps[THIS.__module], THIS.whapp_vars);
         },
 
         list_submodules: {

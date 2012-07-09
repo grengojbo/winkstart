@@ -2,8 +2,7 @@
 *.cache
 test/
 nbproject/
-<<<<<<< HEAD
+origin/development
+.idea/
 
-=======
->>>>>>> origin/development
 

@@ -142,7 +142,6 @@ winkstart.module('voip', 'registration',
 			];
 
 			winkstart.table.create('registration', $('#registration-grid', parent), columns, {}, {
-                sDom: 'frtlip',
                 aaSorting: [[3, 'desc']]
             });
 

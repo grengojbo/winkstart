@@ -47,9 +47,8 @@
 #cdr-view .date label.call_duration {
     float: right;
     text-align: right;
-    width: 300px;
+    width: 350px;
     color: #05addc;
-    overflow: hidden;
 }
 
 #cdr-view .dataTables_filter {
@@ -57,7 +56,7 @@
 }
 
 #cdr-view #cdr-grid a {
-    color: #cccccc;
+    color: #424242;
     text-decoration: underline;
 }
 

@@ -4,30 +4,30 @@
             {{if resource_type === 'offnet'}}
                 <div class="title">
                     {{if company_name}}
-                    <h1>Congratulations! You're now using ${company_name} as your global carrier!</h1>
+                    <h1>Поздравляем! Вы сейчас используете ${company_name} в качестве глобального носителя!</h1>
                     {{else}}
                     <h1>Congratulations! You're now using your provider as your global carrier!</h1>
                     {{/if}}
                     <div class="help_text">
-                        If you want to manage your own carriers, click on "Use a different carrier" button.
+                        Если вы хотите управлять своими собственными carriers, нажмите на кнопку "Использовать другой  carrier".
                     </div>
                 </div>
                 <div class="resource_buttons">
                     <div class="wrapper_div">
                         <div class="hosted_btn resource_btn pressed">
                             <div class="button_text">
-                            {{if company_name}}
-                                Use ${company_name} as my phone company
-                            {{else}}
-                                Use my provider
-                            {{/if}}
+                                {{if company_name}}
+                                                                Use ${company_name} as my phone company
+                                                            {{else}}
+                                                                Use my provider
+                                                            {{/if}}
                             </div>
                         </div>
                     </div>
                     <div class="wrapper_div">
                         <div class="different_carrier_btn resource_btn">
                             <div class="button_text">
-                            Use a different carrier
+                            Использовать другой carrier
                             </div>
                         </div>
                     </div>
@@ -35,9 +35,9 @@
             {{else}}
                 {{if resource_type === 'resources'}}
                     <div class="title">
-                        <h1>Your account is currently using an external carrier</h1>
+                        <h1>Ваша учетная запись с помощью внешнего carrier</h1>
                         <div class="help_text">
-                            You can manage your own carriers by adding/editing or removing carriers from the list on the left side.
+                            Вы можете управлять вашим собственным carriers путем добавления / редактирования или удаления carriers из списка в левой части.
                         </div>
                     </div>
                     <div class="resource_buttons">
@@ -55,31 +55,27 @@
                         <div class="wrapper_div">
                             <div class="different_carrier_btn resource_btn pressed">
                                 <div class="button_text">
-                                Use a different carrier
+                                Использовать другой carrier
                                 </div>
                             </div>
                         </div>
                     </div>
                 {{else}}
                     <div class="title">
-                        <h1>Select the type of Resources you would like to use</h1>
+                        <h1>Выберите тип ресурсов которые Вы хотели бы использовать</h1>
                     </div>
                     <div class="resource_buttons">
                         <div class="wrapper_div">
                             <div class="hosted_btn resource_btn">
                                 <div class="button_text">
-                                {{if company_name}}
-                                    Use ${company_name} as my phone company
-                                {{else}}
-                                    Use my provider
-                                {{/if}}
+                                 Используйте ${company_name} как мой телефон компании
                                 </div>
                             </div>
                         </div>
                         <div class="wrapper_div">
                             <div class="different_carrier_btn resource_btn">
                                 <div class="button_text">
-                                Use a different carrier
+                                    Использовать другой carrier
                                 </div>
                             </div>
                         </div>

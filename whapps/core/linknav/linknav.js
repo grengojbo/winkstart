@@ -64,13 +64,14 @@ winkstart.module('core', 'linknav', {
 
             if(normalized_args.modifier) {
                 if(typeof normalized_args.modifier == 'function') {
-                    //No, this is not a typo. Let the dev chose if they want 'this' or a param
+                    //No, this is not a typo. Let the dev chose if they want 'this' or a param 
                     normalized_args.modifier.call(link_html, link_html);
                 }
             }
 
             (link_list_html).each(function(index) {
                 var weight = $(this).dataset('weight');
+
                 if(normalized_args.weight < weight) {
                     $(this).before(link_html);
 
@@ -92,20 +93,6 @@ winkstart.module('core', 'linknav', {
                     .append(link_divider_html)
                     .append(link_html);
 
-            }
-
-            var topbar = $('body > .topbar'),
-                data_nb = topbar.data('nb') || 0,
-                nb = Math.round(parseInt(link_html.css('width'))/140);
-
-            (nb == 0) ? nb = 1 : nb = nb;
-            topbar.data('nb', data_nb + nb);
-
-            if(topbar.data('nb') > 6) {
-                var tmp = 140*nb;
-                topbar.css({
-                    'min-width': '+= ' + tmp
-                });
             }
         },
 

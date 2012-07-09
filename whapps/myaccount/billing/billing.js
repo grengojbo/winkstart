@@ -9,8 +9,7 @@ winkstart.module('myaccount', 'billing', {
 
         subscribe: {
             'myaccount.nav.post_loaded': 'myaccount_loaded',
-            'billing.popup': 'popup',
-            'billing.ext_link': 'ext_link'
+            'billing.popup': 'popup'
         },
 
         resources: {
@@ -64,24 +63,14 @@ winkstart.module('myaccount', 'billing', {
             );
         },
 
-        myaccount_loaded: function(user_data) {
-            if(winkstart.config.display_billing || (!user_data.priv_level || user_data.priv_level === 'admin')){
-                var publish = '';
-
-                (winkstart.config.nav.billing) ? publish = 'billing.ext_link' : publish = 'billing.popup';
-
-                winkstart.publish('nav.add_sublink', {
-                    link: 'nav',
-                    sublink: 'billing',
-                    label: 'Billing',
-                    weight: '15',
-                    publish: publish
-                });
-            }
-        },
-
-        ext_link: function() {
-            window.open(winkstart.config.nav.billing);
+        myaccount_loaded: function() {
+            winkstart.publish('nav.add_sublink', {
+                link: 'nav',
+                sublink: 'billing',
+                label: 'Billing',
+                weight: '15',
+                publish: 'billing.popup'
+            });
         },
 
         update_billing: function(data, new_data, success, error) {
@@ -118,8 +107,8 @@ winkstart.module('myaccount', 'billing', {
                         winkstart.alert('info', 'Credit card updated!');
                     },
                     function(_data, status) {
-                        if(status == 400 && _data.message) {
-                            winkstart.alert('error', 'The following errors occurred:<br/><br/>' + _data.message.replace(/\./g, '<br/>'));
+                        if(status == 400) {
+                            winkstart.alert('error', 'The following errors occurred:<br/><br/>' + _data.data.message.replace(/\./g, '<br/>'));
                         }
                         else {
                             winkstart.alert('error', 'There was an unspecified server error, please try again later.');
@@ -155,7 +144,7 @@ winkstart.module('myaccount', 'billing', {
                 .append(billing_html);
         },
 
-        popup: function() {
+        popup: function(){
             var THIS = this,
                 popup_html = $('<div class="inline_popup"><div class="inline_content main_content"/></div>');
 

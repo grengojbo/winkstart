@@ -126,13 +126,6 @@
     winkstart.dialog = function(content, options) {
         var newDiv = $(document.createElement('div')).html(content);
 
-        $('input', content).keypress(function(e) {
-            if(e.keyCode == 13) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
         //Unoverridable options
         var strict_options = {
             show: { effect : 'fade', duration : 200 },
@@ -242,22 +235,18 @@
         });
     };
 
-    winkstart.accordion = function(html, change_name) {
+    winkstart.accordion = function(html){
 
         function toggle(btn, state) {
             var div = $('#' + btn.data('toggle'));
 
             if(state) {
-                btn.addClass('activated');
-                if(change_name != false) {
-                    btn.html('Hide');
-                }
+                btn.addClass('activate');
+                btn.html('Hide');
                 div.slideDown();
             } else {
-                btn.removeClass('activated');
-                if(change_name != false) {
-                    btn.html('Show');
-                }
+                btn.removeClass('activate');
+                btn.html('Show');
                 div.slideUp();
             }
         }
@@ -285,117 +274,9 @@
             var btn = $(this);
             ev.preventDefault();
 
-            toggle(btn, !btn.hasClass('activated'));
+            toggle(btn, !btn.hasClass('activate'));
         });
 
     };
-
-    winkstart.chart = function(target, data, opt, type) {
-        this.target = target;
-        this.data = data;
-        this.options = {
-            backgroundColor: 'transparent',
-            pieSliceText: 'value',
-            pieSliceBorderColor: 'transparent',
-            legend: {
-                textStyle: {
-                    color: 'white'
-                }
-            }
-        };
-        if(type){
-            this.type = type;
-        }
-
-        $.extend(true, this.options, opt);
-
-        return this.init();
-    };
-
-    winkstart.chart.prototype = {
-        init: function() {
-            var THIS = this;
-
-            function loadChart() {
-                THIS.loadChart(THIS);
-            }
-
-            google.load("visualization", "1", {
-                packages:["corechart"],
-                callback: loadChart
-            });
-        },
-
-
-        loadChart: function(THIS){
-            switch(THIS.type) {
-                case 'line':
-                    THIS.chart = new google.visualization.LineChart(document.getElementById(THIS.target));
-                    break;
-                default:
-                    THIS.chart = new google.visualization.PieChart(document.getElementById(THIS.target));
-                    break;
-            }
-            THIS.chart.draw(google.visualization.arrayToDataTable(THIS.data), THIS.options);  
-        },
-
-        setData: function(data, push) {
-            if(push) {
-                this.data.push(data);
-            } else {
-                this.data = data;
-            }
-        },
-
-        setOptions: function(options, ext) {
-            if(ext) {
-                $.extend(true, this.options, options);
-            } else {
-                this.options = options;
-            }
-        },
-
-        refresh: function() {
-            var data = google.visualization.arrayToDataTable(this.data);
-            this.chart.draw(data, this.options);
-        }
-    };
-
-    winkstart.print_r = function(arr) {
-
-        var arrayToString = function(arr, level) {
-                var dumped_text = "",
-                    level_padding = "";
-
-                if(!level) level = 0;
-                
-                for(var j=0; j< level+1; j++) level_padding += "    ";
-
-                if(typeof(arr) == 'object') { 
-                    for(var item in arr) {
-                        var value = arr[item];
-                 
-                        if(typeof(value) == 'object') { 
-                           dumped_text += level_padding + "'" + item + "': { \n";
-                           dumped_text += arrayToString(value, level+1);
-                           dumped_text += level_padding + "}\n";
-                        } else {
-                           dumped_text += level_padding + "'" + item + "': \"" + value + "\"\n";
-                        }
-                    }
-                } else { 
-                    dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
-                }
-
-                return dumped_text;
-            },
-            str = "";
-
-        str += "<pre style='text-align:left;'>{\n";
-        str += arrayToString(arr);
-        str += "\n}</pre>";
-
-        return str;  
-    }
 
 })(window.winkstart = window.winkstart || {}, window.amplify = window.amplify || {}, jQuery);

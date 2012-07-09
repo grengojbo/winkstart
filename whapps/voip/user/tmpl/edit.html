@@ -2,9 +2,9 @@
 	<div class="row">
 		<div class="whapp-header">
 			{{if data.id}}
-                <h1>Edit User</h1>
+                <h1>Редактировать пользователя</h1>
             {{else}}
-                <h1>Create User</h1>
+                <h1>Создать пользователя</h1>
             {{/if}}
 			<div class="buttons-right pasted view-buttons">
 				<button class="btn black basic activate">Basic</button>
@@ -80,24 +80,6 @@
 			                                <input id="vm_to_email_enabled" type="checkbox" name="vm_to_email_enabled" />
 			                                {{/if}}
 			                                <span>Voicemail to Email</span>
-		                                </span>
-                            		</label>
-                                </li>
-                            </ul>
-						</div>
-					</div>
-					<div class="clearfix">
-						<div class="input">
-							<ul class="inputs-list">
-              					<li>
-	              					<label>
-	              						<span rel="popover" data-content="By checking this option, an email will be sent to the specified e-mail address each time you get a Fax.">
-											{{if data.fax_to_email_enabled}}
-			                                <input id="fax_to_email_enabled" type="checkbox" name="fax_to_email_enabled" checked="checked" />
-			                                {{else}}
-			                                <input id="fax_to_email_enabled" type="checkbox" name="fax_to_email_enabled" />
-			                                {{/if}}
-			                                <span>Fax to Email</span>
 		                                </span>
                             		</label>
                                 </li>
@@ -392,16 +374,16 @@
 
 	            <div id="password_management">
 	            	<div class="clearfix">
-	            		<label for="pwd_mngt_pwd1">New Password</label>
+	            		<label for="pwd_reco_pwd1">New Password</label>
 	            		<div class="input">
-	            			<input class="span4" id="pwd_mngt_pwd1" name="pwd_mngt_pwd1" type="password" value="fakePassword"/>
+	            			<input class="span4" id="pwd_reco_pwd1" name="pwd_reco_pwd1" type="password" value="fakePassword"/>
 	            		</div>
 	            	</div>
 
 	            	<div class="clearfix">
 	            		<label for="pwd_reco_pwd2">Confirm Password</label>
 	            		<div class="input">
-	            			<input class="span4" id="pwd_mngt_pwd2" name="pwd_mngt_pwd2" type="password" value="fakePassword"/>
+	            			<input class="span4" id="pwd_reco_pwd2" name="pwd_reco_pwd2" type="password" value="fakePassword"/>
 	            		</div>
 	            	</div>
 	            </div>

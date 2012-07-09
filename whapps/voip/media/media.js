@@ -437,7 +437,7 @@ winkstart.module('voip', 'media', {
                 'play[id=*]': {
                     name: 'Play Media',
                     icon: 'play',
-                    category: 'Basic',
+                    category: 'Advanced',
                     module: 'play',
                     tip: 'Play an audio file such as a greeting',
                     data: {

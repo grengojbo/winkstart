@@ -17,8 +17,8 @@
             <li class="active"><a href="#basic">Basic</a></li>
             <li><a href="#voicemail_to_email"><span class="icon vmbox"></span>Voicemail To Email Template</a></li>
             <li><a href="#monitoring"><span class="icon fax"></span>Monitoring</a></li>
-            <li><a href="#billing"><span class="icon sip"></span>Billing</a></li>
-            <li><a href="#applications"><span class="icon sip"></span>Available Apps</a></li>
+            <li><a href="#options"><span class="icon sip"></span>Options</a></li>
+            <!--<li><a href="#applications"><span class="icon sip"></span>Available Apps</a></li>-->
             <li><a href="#white_labeling"><span class="icon sip"></span>White labeling</a></li>
         </ul>
         <form action="#" id="accounts_manager-form">
@@ -37,7 +37,6 @@
                              rel="popover" data-content="Realm of this account" />
                         </div>
                     </div>
-
                 </div>
 
                 <div id="voicemail_to_email">
@@ -117,84 +116,27 @@
                     </div>
                 </div>
 
-                <div id="billing">
+                <div id="options">
                     <div class="clearfix">
                         <label>Billing Account</label>
                         <div class="input">
-                            <span rel="popover" data-content="Who is paying for calls made and phone numbers purchased on this account">
-                                <select name="extra.billing_account">
-                                    {{if field_data.billing_account === 'self'}}
-                                        <option value="parent">This Parent Account</option>
-                                        <option value="self" selected="selected">This Account itself</option>
+                            <select name="extra.billing_account">
+                                {{if field_data.billing_account === 'self'}}
+                                    <option value="parent">This Parent Account</option>
+                                    <option value="self" selected="selected">This Account itself</option>
+                                {{else}}
+                                    {{if field_data.billing_account === 'parent'}}
+                                        <option value="parent" selected="selected">This Parent Account</option>
+                                        <option value="self">This Account itself</option>
                                     {{else}}
-                                        {{if field_data.billing_account === 'parent'}}
-                                            <option value="parent" selected="selected">This Parent Account</option>
-                                            <option value="self">This Account itself</option>
-                                        {{else}}
-                                            <option value="parent">This Parent Account</option>
-                                            <option value="self">This Account itself</option>
-                                            <option value="other" selected="selected">Other</option>
-                                        {{/if}}
+                                        <option value="parent">This Parent Account</option>
+                                        <option value="self">This Account itself</option>
+                                        <option value="other" selected="selected">Other</option>
                                     {{/if}}
-                                </select>
-                            </span>
+                                {{/if}}
+                            </select>
                         </div>
                     </div>
-
-                    <h3>Credits (Per-Minute Calling)</h3>
-
-                    <div class="clearfix">
-                        <label for="billing_balance">Balance</label>
-                        <div class="input">
-                            <div class="inline-inputs">
-                                <input class="mini disabled" id="billing_balance_dis" type="text" disabled="disabled" value="${credits.amount}"/>
-                                <input class="mini" id="billing_balance" name="billing.balance" type="text" value="" rel="popover" data-content="Pay-per-minute allows you to pay only for what you use. Deposit money into your account to get started, then pay-as-you-go for usage."/>
-                                <span class="help-block">Current / Add</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3>Limits (Flat-Rate Calling)</h3>
-
-                    <div class="clearfix">
-                        <label for="billing_inbound_trunks">Inbound Calling</label>
-                        <div class="input">
-                            <input class="mini" id="billing_inbound_trunks" name="billing.inbound_trunks" type="text" value="${limits.inbound_trunks}" rel="popover" data-content="Allow up to {} simultaneous outbound calls to the US-48 at $29.99/month per line" />
-                        </div>
-                    </div>
-
-                    <div class="clearfix">
-                        <label for="billing_twoway_trunks">Outbound Calling</label>
-                        <div class="input">
-                            <input class="mini" id="billing_twoway_trunks" name="billing.twoway_trunks" type="text" value="${limits.twoway_trunks}" rel="popover" data-content="Allow up to simultaneous inbound calls at $6.99/month per line" />
-                        </div>
-                    </div>
-                </div>
-
-                <div id="applications">
-
-                    <div class="clearfix">
-                        <label for="">Avalaible Apps</label>
-                        <div class="input">
-                            <ul class="inputs-list">
-                                {{each(i, app) field_data.available_apps}}
-                                    <li>
-                                        <label>
-                                            <span rel="popover" data-content="${app.desc}">
-                                                {{if app.enabled}}
-                                                    <input type="checkbox" id="available_apps_${app.id}" name="available_apps[]" value="${app.id}" checked="checked"/>
-                                                {{else}}
-                                                    <input type="checkbox" id="available_apps_${app.id}" name="available_apps[]" value="${app.id}"/>
-                                                {{/if}}
-                                                <span>${app.label}</span>
-                                            </span>
-                                        </label>
-                                    </li>
-                                {{/each}}
-                            </ul>
-                        </div>
-                    </div>
-                    
                 </div>
 
                 <div id="white_labeling">

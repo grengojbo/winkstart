@@ -4,7 +4,7 @@
             {{if data.id}}
                 <h1>Edit ${data.type.charAt(0).toUpperCase() + data.type.slice(1)} Carrier</h1>
             {{else}}
-                <h1>Add Carrier</h1>
+                <h1>Добавить Carrier</h1>
             {{/if}}
 
             <div class="buttons-right pasted view-buttons">
@@ -132,6 +132,21 @@
                             {{/each}}
                             </select>
                             <input type="text" id="rules" name="rules[0]" value="${data.rules[0]}" />
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <label for="gateways_invite_format">Invite Format</label>
+                        <div class="input">
+                            <select name="gateways[0].invite_format" id="gateways_invite_format" class="medium" rel="popover" data-content="The format of the request URI used in the SIP invite.">
+                            {{each(key, val) field_data.gateways.invite_formats}}
+                                {{if data.rules[0] == key}}
+                                    <option value="${key}" selected="selected">${val}</option>
+                                {{else}}
+                                    <option value="${key}">${val}</option>
+                                {{/if}}
+                            {{/each}}
+                            </select>
                         </div>
                     </div>
 

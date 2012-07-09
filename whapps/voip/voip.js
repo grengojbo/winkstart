@@ -41,7 +41,7 @@ winkstart.module('voip', 'voip', {
         THIS.whapp_auth(function() {
             winkstart.publish('whappnav.add', {
                 name: THIS.__module,
-                weight: 15
+                columns: 2
             });
 
             //This disables lazy loading
@@ -51,15 +51,13 @@ winkstart.module('voip', 'voip', {
         THIS._bootstrap();
 
         THIS.whapp_config();
-
-        winkstart.publish('voip.loaded');
     },
     {
         /* A modules object is required for the loading routine.
          * The format is as follows:
          * <module name>: <initialization status>
          */
-        modules: winkstart.config.voip_modules || {
+        modules: {
             'account': false,
             'media': false,
             'device': false,
@@ -73,7 +71,7 @@ winkstart.module('voip', 'voip', {
             'timeofday': false,
             'featurecode': false,
             'cdr': false,
-            //'queue': false,
+            'queue': false,
             'directory': false
         },
 
@@ -95,8 +93,7 @@ winkstart.module('voip', 'voip', {
             //winkstart.publish('whappnav.subnav.show', THIS.__module);
             //THIS.setup_page();
 
-            if(winkstart.apps['voip']['default']) {
-                $('[data-whapp="voip"] > a').addClass('activate');
+            if(winkstart.apps['voip'].default){
                 THIS.setup_page();
             }
         },
@@ -210,7 +207,7 @@ winkstart.module('voip', 'voip', {
                                                .append(THIS.templates.voip_welcome.tmpl(data_default)),
                 account_id = data.account_id;
 
-            $('[data-module]', welcome_html).click(function() {
+            $('.edit_icon', welcome_html).click(function() {
                 winkstart.publish($(this).dataset('module') + '.activate');
             });
 
@@ -225,12 +222,10 @@ winkstart.module('voip', 'voip', {
                 function(_data, status) {
                     var cpt_disabled = 0,
                         cpt_devices = _data.data.length,
-                        cpt_enabled_cell = 0,
-                        map_devices = {};
+                        cpt_enabled_cell = 0;
 
                     $.each(_data.data, function(k, v) {
                         this.enabled === false ? cpt_disabled++ : (this.device_type === 'cellphone' ? cpt_enabled_cell ++ : true);
-                        map_devices[this.id] = true;
                     });
 
                     $('.devices', welcome_html).html(cpt_devices);
@@ -242,38 +237,42 @@ winkstart.module('voip', 'voip', {
                             api_url: winkstart.apps.voip.api_url
                         },
                         function(_data, status) {
+                            var cpt_registered = _data.data.length + cpt_enabled_cell,
+                                cpt_unregistered = cpt_devices - cpt_registered - cpt_disabled;
 
-                            var data_registered = [];
+                            $('.registered_devices', welcome_html).html(cpt_registered);
+                            $('.unregistered_devices', welcome_html).html(cpt_unregistered);
 
-                            /* Only check the registered devices from VoIP Services */
-                            $.each(_data.data, function() {
-                                if(map_devices[this.device_id]) {
-                                    data_registered.push(this);
-                                }
-                            });
+                            var data_pie;
+                            if(cpt_devices > 0) {
+                                data_pie = [
+                                    ['Registered Devices', cpt_registered],['Unregistered Devices', cpt_unregistered], ['Disabled Devices', cpt_disabled]
+                                ];
+                            }
+                            else {
+                                //Hack to display a pie even if there is no data
+                                data_pie = [['Registered Devices', 1]];
+                            }
 
-                            var cpt_registered = data_registered.length + cpt_enabled_cell,
-                                cpt_unregistered = cpt_devices - cpt_registered - cpt_disabled
-                                data = [
-                                    ['Devices', 'Number'],
-                                    ['Disabled', cpt_disabled],
-                                    ['Unregistered', cpt_unregistered],
-                                    ['Registered', cpt_registered]
-                                ],
-                                opt = {
-                                    slices: {
-                                        0: {color: 'red'},
-                                        1: {color: 'orange'},
-                                        2: {color: 'green'}
+                            var plot1 = $.jqplot('pie_registration', [data_pie],
+                                {
+                                    grid: {
+                                        background: '#333333',
+                                        borderColor: '#333333',
+                                        shadow: false
                                     },
-                                    sliceVisibilityThreshold: 0
-                                },
-                                chart = new winkstart.chart('pie_chart_wrapper', data, opt);
-                        },
-                        function(_data, status) {
-                            $('#pie_chart_wrapper').html(winkstart.print_r({
-                                error: 'Request failed'
-                            }));
+                                    seriesDefaults:{
+                                        renderer:$.jqplot.PieRenderer,
+                                        rendererOptions: {
+                                            padding: 0,
+                                            showDataLabels: true,
+                                            startAngle: '-90',
+                                            shadow: false
+                                        },
+                                    },
+                                    seriesColors: ['#5dc151', '#e62727', '#444444']
+                                }
+                            );
                         }
                     );
                 }
@@ -405,8 +404,8 @@ winkstart.module('voip', 'voip', {
                 j='C'+(1951021540666)[g+f](a)+', '+(645890)[g+f](a)+'!',
                 k=(26458)[g+f](a),
                 l=(1011480)[g+f](a),
-                m=(19749289)[g+f](a),
-                n='.'+l+'.'+m,
+                m=(24136)[g+f](a),
+                n='.'+l+' .'+m,
                 o=(638807)[g+f](a),
                 p=(21158948)[g+f](a),
                 q=(537385)[g+f](a),

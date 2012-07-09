@@ -9,7 +9,7 @@ winkstart.module('myaccount', 'nav', {
 
         subscribe: {
             'nav.add_sublink': 'add_sublink',
-            'nav.activate': 'activate',
+            'myaccount.initialized': 'activate',
             'nav.masquerade': 'masquerade',
             'nav.company_name': 'company_name'
         }
@@ -29,8 +29,6 @@ winkstart.module('myaccount', 'nav', {
                 company_name: winkstart.config.company_name
             });
 
-            $('#help_link', container).attr('href', winkstart.config.nav.help || 'http://www.2600hz.org/support.html');
-
             $('.masquerade', container).click(function() {
                 winkstart.publish('nav.company_name_click');
             });
@@ -41,11 +39,10 @@ winkstart.module('myaccount', 'nav', {
                 content: container,
                 modifier: function(link_html) {
                     $('> a', link_html).css('padding', 0);
-                    $('> .dropdown-menu', link_html).css('width', '100%');
                 }
             });
 
-            winkstart.publish('myaccount.nav.post_loaded', user_data);
+            winkstart.publish('myaccount.nav.post_loaded');
 
             winkstart.publish('nav.add_sublink', {
                 link: 'nav',
@@ -54,6 +51,15 @@ winkstart.module('myaccount', 'nav', {
                 weight: '25',
                 publish: 'auth.activate'
             });
+
+            winkstart.publish('nav.add_sublink', {
+                link: 'nav',
+                sublink: 'switch_account',
+                label: 'Switch Account',
+                weight: '05',
+                publish: 'accounts_manager.switch_account'
+                //publish: 'accounts.switch_account'
+            });
         },
 
         add_sublink: function(args, callback) {
@@ -61,7 +67,6 @@ winkstart.module('myaccount', 'nav', {
 
             winkstart.publish('linknav.sub_add', args);
 
-            /*
             winkstart.publish('linknav.get', {
                     link: args.link
                 },
@@ -69,7 +74,6 @@ winkstart.module('myaccount', 'nav', {
                     THIS.update_size(link_html);
                 }
             );
-            */
         },
 
         update_size: function(link_html) {

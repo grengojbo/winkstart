@@ -2,12 +2,12 @@
     <div id="ring_group_popup" class="dialog_popup">
         <div class="form_content">
             <div class="popup_field">
-                <label>Name this ring group</label>
+                <label>Имя этой Ring Group</label>
                 <input id="name" type="text" value="${form.name}"/>
                 <div class="clear"/>
             </div>
             <div class="popup_field">
-                <label>Ring Strategy</label>
+                <label> Стратегия вызовов </label>
                 <select id="strategy">
                     {{each(i, obj) form.strategy.items}}
                         {{if form.strategy.selected == obj.id}}

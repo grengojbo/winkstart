@@ -19,12 +19,9 @@ winkstart.module('voip', 'callflow', {
             edit_dialog: 'tmpl/edit_dialog.html',
             two_column: 'tmpl/two_column.html',
             disa_callflow: 'tmpl/disa_callflow.html',
-            presence_callflow: 'tmpl/presence_callflow.html',
             ring_group_dialog: 'tmpl/ring_group_dialog.html',
             ring_group_element: 'tmpl/ring_group_element.html',
             buttons: 'tmpl/buttons.html',
-            help_callflow: 'tmpl/help_callflow.html',
-            fax_callflow: 'tmpl/fax_callflow.html',
             prepend_cid_callflow: 'tmpl/prepend_cid_callflow.html'
         },
 
@@ -43,21 +40,10 @@ winkstart.module('voip', 'callflow', {
         },
 
         resources: {
-            'callflow.list_numbers': {
-                url: '{api_url}/accounts/{account_id}/phone_numbers',
-                contentType: 'application/json',
-                verb: 'GET'
-            },
             'callflow.list': {
                 url: '{api_url}/accounts/{account_id}/callflows',
                 contentType: 'application/json',
                 verb: 'GET'
-            },
-            'callflow.list_no_loading': {
-                url: '{api_url}/accounts/{account_id}/callflows',
-                contentType: 'application/json',
-                verb: 'GET',
-                trigger_events: false
             },
             'callflow.get': {
                 url: '{api_url}/accounts/{account_id}/callflows/{callflow_id}',
@@ -91,8 +77,6 @@ winkstart.module('voip', 'callflow', {
 
         winkstart.registerResources(THIS.__whapp, THIS.config.resources);
 
-        //winkstart.publish('statistics.add_stat', THIS.define_stats());
-
         winkstart.publish('whappnav.subnav.add', {
             whapp: 'voip',
             module: THIS.__module,
@@ -116,24 +100,6 @@ winkstart.module('voip', 'callflow', {
             });
 
             winkstart.publish('callflow.define_callflow_nodes', THIS.actions);
-        },
-
-        list_numbers: function(success, error) {
-            winkstart.request('callflow.list_numbers', {
-                    api_url: winkstart.apps['voip'].api_url,
-                    account_id: winkstart.apps['voip'].account_id
-                },
-                function(_data, status) {
-                    if(typeof success === 'function') {
-                        success(_data);
-                    }
-                },
-                function(_data, status) {
-                    if(typeof error === 'function') {
-                        error(_data);
-                    }
-                }
-            );
         },
 
         renderButtons: function() {
@@ -174,8 +140,6 @@ winkstart.module('voip', 'callflow', {
 
         editCallflow: function(data) {
             var THIS = this;
-
-            $('#callflow-view .callflow_help').remove();
 
             THIS._resetFlow();
 
@@ -474,9 +438,6 @@ winkstart.module('voip', 'callflow', {
                     $node.removeClass('icons_black root');
                     node_html = THIS.templates.root.tmpl({});
 
-                    $('.tooltip', node_html).click(function() {
-                        winkstart.dialog(THIS.templates.help_callflow.tmpl());
-                    });
 
                     for(var x, size = THIS.flow.numbers.length, j = Math.floor((size) / 2) + 1, i = 0; i < j; i++) {
                         x = i * 2;
@@ -486,102 +447,46 @@ winkstart.module('voip', 'callflow', {
                     }
 
                     $('.number_column.empty', node_html).click(function() {
-                        THIS.list_numbers(function(_data) {
-                            var phone_numbers = [];
+                        var popup_html = THIS.templates.add_number.tmpl({}),
+                            popup;
 
-                            $.each(_data.data, function(k,v) {
-                                if(k != 'id') {
-                                    phone_numbers.push(k);
-                                }
-                            });
-                            phone_numbers.sort();
+                        popup = winkstart.dialog(popup_html, {
+                                title: 'Add number'
+                        });
 
-                            var popup_html = THIS.templates.add_number.tmpl({phone_numbers: phone_numbers}),
-                                popup;
+                        $('#add_number_text', popup).blur();
 
-                            if(phone_numbers.length === 0) {
-                                $('#list_numbers', popup_html).attr('disabled', 'disabled');
-                                $('<option value="select_none">No Phone Numbers</option>').appendTo($('#list_numbers', popup_html));
-                            }
+                        $('button.add_number', popup).click(function(event) {
+                            event.preventDefault();
+                            var number = $('#add_number_text', popup).val(),
+                                add_number = function() {
+                                    THIS.flow.numbers.push(number);
+                                    popup.dialog('close');
 
-                            var render = function() {
-                                popup = winkstart.dialog(popup_html, {
-                                        title: 'Add number'
-                                });
-                            };
+                                    THIS.renderFlow();
+                                };
 
-                            var refresh_numbers = function() {
-                                 THIS.list_numbers(function(_data) {
-                                    phone_numbers = [];
-
-                                    $.each(_data.data, function(k,v) {
-                                        if(k != 'id') {
-                                            phone_numbers.push(k);
-                                        }
-                                    });
-
-                                    phone_numbers.sort();
-
-                                    $('#list_numbers', popup).empty();
-
-                                    if(phone_numbers.length === 0) {
-                                        $('#list_numbers', popup).attr('disabled', 'disabled');
-                                        $('<option value="select_none">No Phone Numbers</option>').appendTo($('#list_numbers', popup));
-                                    }
-                                    else {
-                                        $('#list_numbers', popup).removeAttr('disabled');
-                                        $.each(phone_numbers, function(k, v) {
-                                            $('<option value="'+v+'">'+v+'</option>').appendTo($('#list_numbers', popup));
-                                        });
-                                    }
-                                });
-                            };
-
-                            if(winkstart.publish('numbers_manager.render_fields', $('#number_manager_fields', popup_html), render, refresh_numbers)) {
-                                render();
-                            };
-
-                            $('.extensions_content', popup).hide();
-
-                            $('input[name="number_type"]', popup).click(function() {
-                                if($(this).val() === 'your_numbers') {
-                                    $('.list_numbers_content', popup).show();
-                                    $('.extensions_content', popup).hide();
-                                }
-                                else {
-                                    $('.extensions_content', popup).show();
-                                    $('.list_numbers_content', popup).hide();
-                                }
-                            });
-
-                            $('button.add_number', popup).click(function(event) {
-                                event.preventDefault();
-                                var number = $('input[name="number_type"]:checked', popup).val() === 'your_numbers' ? $('#list_numbers option:selected', popup).val() : $('#add_number_text', popup).val(),
-                                    add_number = function() {
-                                        THIS.flow.numbers.push(number);
-                                        popup.dialog('close');
-
-                                        THIS.renderFlow();
-                                    };
-
-                                if(number !== 'select_none') {
-                                    if(number == '') {
-                                        winkstart.confirm('Are you sure that you want to add an empty number?', function() {
-                                                add_number();
-                                            },
-                                            function() {
-                                                return;
-                                            }
-                                        );
-                                    }
-                                    else {
+                            if(number == '') {
+                                winkstart.confirm('Are you sure that you want to add an empty number?', function() {
                                         add_number();
+                                    },
+                                    function() {
+                                        return;
                                     }
-                                }
-                                else {
-                                    winkstart.alert('You didn\'t select a valid phone number.');
-                                }
-                            });
+                                );
+                            }
+                            else {
+                                add_number();
+                            }
+                        });
+
+                        $('#create_no_match', popup).click(function(event) {
+                            event.preventDefault();
+                            THIS.flow.numbers.push('no_match');
+
+                            popup.dialog('close');
+
+                            THIS.renderFlow();
                         });
                     });
 
@@ -753,9 +658,6 @@ winkstart.module('voip', 'callflow', {
 
             $('.content', tools).hide();
 
-            $('.tooltip', tools).click(function() {
-                winkstart.dialog(THIS.templates.help_callflow.tmpl());
-            });
             // Set the basic drawer to open
             $('#basic', tools).removeClass('inactive').addClass('active');
             $('#basic .content', tools).show();
@@ -779,7 +681,7 @@ winkstart.module('voip', 'callflow', {
                     $('.tool_name', $(this)).addClass('active');
                     if($(this).attr('help')) {
                         $('#help_box', help_box).html($(this).attr('help'));
-                        $('.callflow_helpbox_wrapper', '#callflow-view').css('top', $(this).offset().top - 72)
+                        $('.callflow_helpbox_wrapper', '#callflow-view').css('top', $(this).offset().top)
                                                                         .show();
                     }
                 },
@@ -954,46 +856,6 @@ winkstart.module('voip', 'callflow', {
                     }
                 }
             );
-        },
-
-        define_stats: function() {
-            var stats = {
-                'callflows': {
-                    icon: 'callflow',
-                    get_stat: function(callback) {
-                        winkstart.request('callflow.list_no_loading', {
-                                account_id: winkstart.apps['voip'].account_id,
-                                api_url: winkstart.apps['voip'].api_url
-                            },
-                            function(_data, status) {
-                                $.each(_data.data, function() {
-                                    if(this.featurecode) {
-                                        _data.data.length--;
-                                    }
-                                });
-
-                                var stat_attributes = {
-                                    name: 'callflows',
-                                    number: _data.data.length,
-                                    active: _data.data.length > 0 ? true : false,
-                                    color: _data.data.length < 1 ? 'red' : (_data.data.length > 1 ? 'green' : 'orange')
-                                };
-                                if(typeof callback === 'function') {
-                                    callback(stat_attributes);
-                                }
-                            },
-                            function(_data, status) {
-                                callback({error: true});
-                            }
-                        );
-                    },
-                    click_handler: function() {
-                        winkstart.publish('callflow.activate');
-                    }
-                }
-            };
-
-            return stats;
         },
 
         define_callflow_nodes: function(callflow_nodes) {
@@ -1563,128 +1425,6 @@ winkstart.module('voip', 'callflow', {
                         if(typeof callback == 'function') {
                             callback();
                         }
-                    }
-                },
-                'manual_presence[]': {
-                    name: 'Manual Presence',
-                    icon: 'lightbulb_on',
-                    category: 'Advanced',
-                    module: 'manual_presence',
-                    tip: 'Manual Presence Help',
-                    data: {
-                    },
-                    rules: [
-                        {
-                            type: 'quantity',
-                            maxSize: '1'
-                        }
-                    ],
-                    isUsable: 'true',
-                    caption: function(node, caption_map) {
-                        return node.getMetadata('presence_id') || '';
-                    },
-                    edit: function(node, callback) {
-                        var popup, popup_html;
-
-                        popup_html = THIS.templates.presence_callflow.tmpl({
-                            data_presence: {
-                                'presence_id': node.getMetadata('presence_id') || '',
-                                'status': node.getMetadata('status') || 'busy'
-                            }
-                        });
-
-                        $('#add', popup_html).click(function() {
-                            var presence_id = $('#presence_id_input', popup_html).val();
-                            node.setMetadata('presence_id', presence_id);
-                            node.setMetadata('status', $('#presence_status option:selected', popup_html).val());
-
-                            node.caption = presence_id;
-
-                            popup.dialog('close');
-                        });
-
-                        popup = winkstart.dialog(popup_html, {
-                            title: 'Manual Presence',
-                            beforeClose: function() {
-                                if(typeof callback == 'function') {
-                                     callback();
-                                }
-                            }
-                        });
-                    }
-                },
-                'receive_fax[]': {
-                    name: 'Receive Fax',
-                    icon: 'sip',
-                    category: 'Advanced',
-                    module: 'receive_fax',
-                    tip: 'Directs a fax to a specific user',
-                    data: {
-                        owner_id: null
-                    },
-                    rules: [
-                        {
-                            type: 'quantity',
-                            maxSize: '0'
-                        }
-                    ],
-                    isUsable: 'true',
-                    caption: function(node, caption_map) {
-                        return '';
-                    },
-                    edit: function(node, callback) {
-                        winkstart.request('user.list', {
-                                account_id: winkstart.apps['voip'].account_id,
-                                api_url: winkstart.apps['voip'].api_url
-                            },
-                            function(data, status) {
-                                var popup, popup_html;
-
-                                $.each(data.data, function() {
-                                    this.name = this.first_name + ' ' + this.last_name;
-                                });
-
-                                popup_html = THIS.templates.fax_callflow.tmpl({
-                                    objects: {
-                                        items: data.data,
-                                        selected: node.getMetadata('owner_id') || ''
-                                    }
-                                });
-
-                                if($('#user_selector option:selected', popup_html).val() == undefined) {
-                                    $('#edit_link', popup_html).hide();
-                                }
-
-                                $('.inline_action', popup_html).click(function(ev) {
-                                    var _data = ($(this).dataset('action') == 'edit') ?
-                                                    { id: $('#user_selector', popup_html).val() } : {};
-
-                                    ev.preventDefault();
-
-                                    winkstart.publish('user.popup_edit', _data, function(_data) {
-                                        node.setMetadata('owner_id', _data.data.id || 'null');
-
-                                        popup.dialog('close');
-                                    });
-                                });
-
-                                $('#add', popup_html).click(function() {
-                                    node.setMetadata('owner_id', $('#user_selector', popup_html).val());
-
-                                    popup.dialog('close');
-                                });
-
-                                popup = winkstart.dialog(popup_html, {
-                                    title: 'Select User',
-                                    minHeight: '0',
-                                    beforeClose: function() {
-                                        if(typeof callback == 'function') {
-                                            callback();
-                                        }
-                                    }
-                                });
-                            }
-                        );
                     }
                 },
                 'disa[]': {

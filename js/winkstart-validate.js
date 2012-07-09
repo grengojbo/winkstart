@@ -39,19 +39,13 @@
             return function(data, status) {
                 var string_alert = '';
 
-                if(status === 400 && (data.message === 'invalid data' || data.message === 'braintree api error')) {
+                if(status === 400 && data.message === 'invalid data') {
                     string_alert += 'Schema Error:<br/><br/>';
 
                     string_alert += arrayToString(data.data || {});
                 }
-                else if($.inArray(status, ['400','401','403','404','405','413','500','503',400,401,403,404,405,413,500,503]) >= 0) {
-                    if(data.message === 'no_payment_token') {
-                        string_alert += 'No credit card found for your account.';
-                    }
-                    else {
-                        string_alert += 'Error status code : ' + status + '<br/><br/><br/>';
-                        string_alert += winkstart.print_r(data);
-                    }
+                else if($.inArray(status, ['401','403','404','405','413','503']) >= 0) {
+                    string_alert += 'Error status code : ' + status;
                 }
 
                 if(string_alert != '') {

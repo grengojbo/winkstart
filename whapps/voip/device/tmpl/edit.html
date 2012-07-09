@@ -88,7 +88,7 @@
 								<li>
 									<label>
 										<span rel="popover" data-content="Do you want to notify the administrator each time this device unregisters">
-											{{if data.suppress_unregister_notifications === false}}
+											{{if data.suppress_unregister_notifications === true}}
 							                    <input type="checkbox" id="suppress_unregister_notifications" name="extra.notify_unregister" checked="checked" />
 							                {{else}}
 							                    <input type="checkbox" id="suppress_unregister_notifications" name="extra.notify_unregister" />
@@ -168,7 +168,7 @@
 					<div class="clearfix">
 						<label for="sip_password">Password</label>
 						<div class="input">
-							<input class="span4" id="sip_password" name="sip.password" type="password" placeholder="" value="${data.sip.password}"/>
+							<input class="span4" id="sip_password" name="sip.password" type="password" placeholder="" value="${data.sip.password}" rel="popover" data-content="Enter your SIP Password. Click on the input to make the password appear"/>
 						</div>
 					</div>
 
@@ -279,7 +279,7 @@
 						<div class="input">
 							<select name="media.fax_option" id="media_fax_option" class="medium" rel="popover" data-content="Do you want to enable T-38 for this device">
 								{{each(key, val) field_data.media.fax.options}}
-                                    {{if data.media.fax_option == key}}
+                                    {{if data.media.fax.option == key}}
                                         <option value="${key}" selected="selected">${val}</option>
                                     {{else}}
                                         <option value="${key}">${val}</option>
@@ -289,7 +289,7 @@
 						</div>
 					</div>
 
-					
+					<input type="hidden" name="extra.notify_unregister" value="false"/>
                 	<input type="hidden" name="media.fax.option" value="false"/>
 				</div>
 			</div>
