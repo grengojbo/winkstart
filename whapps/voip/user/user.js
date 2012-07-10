@@ -244,7 +244,10 @@ winkstart.module('voip', 'user', {
                     field_data: {
                         device_types: {
                             sip_device: 'SIP Device',
-                            cellphone: 'Cell Phone'
+                            cellphone: 'Cell Phone',
+                            fax: 'Fax',
+                            softphone: 'Softphone',
+                            sip_uri: 'SIP URI'
                         }
                     }
                 };
