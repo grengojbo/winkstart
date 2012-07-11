@@ -4,7 +4,7 @@ winkstart.module('portal', 'portal_manager', {
         ],
 
         templates: {
-            portal_manager: 'tmpl/portal_manager.html',
+            portal_manager: 'tmpl/portal_manager.html'
         },
 
         subscribe: {
