@@ -1,16 +1,16 @@
-winkstart.module('skeleton', 'skeleton', {
+winkstart.module('fax', 'fax', {
         css: {
-            skeleton: 'css/skeleton.css'
+            fax: 'css/fax.css'
         },
 
         templates: {
-            skeleton: 'tmpl/skeleton.html'
+            fax: 'tmpl/fax.html'
         },
 
         subscribe: {
-            'skeleton.activate' : 'activate',
-            'skeleton.initialized' : 'initialized',
-            'skeleton.module_activate': 'module_activate'
+            'fax.activate' : 'activate',
+            'fax.initialized' : 'initialized',
+            'fax.module_activate': 'module_activate'
         }
     },
 
@@ -49,7 +49,7 @@ winkstart.module('skeleton', 'skeleton', {
 
         THIS.whapp_config();
 
-        winkstart.publish('skeleton.loaded');
+        winkstart.publish('fax.loaded');
     },
     {
         /* A modules object is required for the loading routine.
@@ -75,8 +75,8 @@ winkstart.module('skeleton', 'skeleton', {
 
             THIS.is_initialized = true;
 
-            if(winkstart.apps['skeleton']['default']) {
-                $('[data-whapp="skeleton"] > a').addClass('activate');
+            if(winkstart.apps['fax']['default']) {
+                $('[data-whapp="fax"] > a').addClass('activate');
                 THIS.setup_page();
             }
         },
@@ -151,9 +151,9 @@ winkstart.module('skeleton', 'skeleton', {
             var THIS = this;
 
             /* Uncomment if you want this whapp to be masqueradable
-            winkstart.apps['skeleton'] = $.extend(true, {
+            winkstart.apps['fax'] = $.extend(true, {
                 is_masqueradable: true
-            }, winkstart.apps['skeleton']);
+            }, winkstart.apps['fax']);
             */
         },
 
@@ -161,9 +161,9 @@ winkstart.module('skeleton', 'skeleton', {
         setup_page: function() {
             var THIS = this;
 
-            console.log('setup_page_skeleton');
+            console.log('setup_page_fax');
             $('#ws-content').empty()
-                            .append(THIS.templates.skeleton.tmpl());
+                            .append(THIS.templates.fax.tmpl());
         }
         /* End copy and paste */
     }

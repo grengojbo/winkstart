@@ -1,4 +1,4 @@
-#skeleton-view {
+#fax-view {
     width: 50%;
     margin : 100px auto;
     padding: 50px;
@@ -7,10 +7,10 @@
     border-radius: 5px;
 }
 
-#skeleton-view h1, #skeleton-view h2 {
+#fax-view h1, #fax-view h2 {
     color: #333;
 }
 
-#skeleton-view a {
+#fax-view a {
     text-decoration: underline;
 }

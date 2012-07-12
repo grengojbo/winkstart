@@ -1,4 +1,4 @@
-winkstart.module('skeleton', 'sub_module',
+winkstart.module('fax', 'sub_module',
 	{
 		css: [
             'css/sub_module.css'
@@ -25,9 +25,9 @@ winkstart.module('skeleton', 'sub_module',
 		winkstart.registerResources(this.__whapp, this.config.resources);
 
 		winkstart.publish('whappnav.subnav.add', {
-			whapp: 'skeleton',
+			whapp: 'fax',
 			module: this.__module,
-			label: 'Skeleton Sub-Module',
+			label: 'fax Sub-Module',
 			icon: 'device', /* Check the icon.css file in whapps/core/layout/css */
 			weight: '05'
 		});
@@ -39,8 +39,8 @@ winkstart.module('skeleton', 'sub_module',
 
             /* Change me! */
             winkstart.request('sub_module.get_account', {
-                    api_url: winkstart.apps['skeleton'].api_url,
-                    account_id: winkstart.apps['skeleton'].account_id
+                    api_url: winkstart.apps['fax'].api_url,
+                    account_id: winkstart.apps['fax'].account_id
                 },
                 function(_data, status) {
                     var sub_module_html = $('#ws-content').empty()
