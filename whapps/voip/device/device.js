@@ -6,9 +6,12 @@ winkstart.module('voip', 'device', {
         templates: {
             device: 'tmpl/device.html',
             general_edit: 'tmpl/general_edit.html',
+            smartphone: 'tmpl/smartphone.html',
+            landline: 'tmpl/landline.html',
             cellphone: 'tmpl/cellphone.html',
             softphone: 'tmpl/softphone.html',
             sip_device: 'tmpl/edit.html',
+            fax: 'tmpl/fax.html',
             device_callflow: 'tmpl/device_callflow.html',
             device_threshold: 'tmpl/device_threshold.html'
         },
@@ -31,7 +34,25 @@ winkstart.module('voip', 'device', {
                 { name: '#sip_username',              regex: /^[^\s]+$/ },
                 { name: '#sip_expire_seconds',        regex: /^[0-9]+$/ }
             ],
+            fax : [
+                { name: '#name',                      regex: /^[a-zA-Z0-9\s_'\-]+$/ },
+                { name: '#mac_address',               regex: /^(((\d|([a-f]|[A-F])){2}:){5}(\d|([a-f]|[A-F])){2})$|^$|^(((\d|([a-f]|[A-F])){2}-){5}(\d|([a-f]|[A-F])){2})$|^(((\d|([a-f]|[A-F])){2}){5}(\d|([a-f]|[A-F])){2})$/ },
+                { name: '#caller_id_name_internal',   regex: /^[0-9A-Za-z ,]{0,15}$/ },
+                { name: '#caller_id_number_internal', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ },
+                { name: '#caller_id_name_external',   regex: /^[0-9A-Za-z ,]{0,15}$/ },
+                { name: '#caller_id_number_external', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ },
+                { name: '#sip_username',              regex: /^[^\s]+$/ },
+                { name: '#sip_expire_seconds',        regex: /^[0-9]+$/ }
+            ],
             cellphone: [
+                { name: '#name',                regex: /^[a-zA-Z0-9\s_']+$/ },
+                { name: '#call_forward_number', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ }
+            ],
+            smartphone: [
+                { name: '#name',                regex: /^[a-zA-Z0-9\s_']+$/ },
+                { name: '#call_forward_number', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ }
+            ],
+            landline: [
                 { name: '#name',                regex: /^[a-zA-Z0-9\s_']+$/ },
                 { name: '#call_forward_number', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ }
             ],
@@ -564,9 +585,6 @@ winkstart.module('voip', 'device', {
                         $('.media_tabs .buttons').removeClass('current');
                         $(this).addClass('current');
 
-                        $(this).animate({ top:'40px' }, 300);
-                        $(this).siblings('.buttons').animate({ top:'0px' }, 300);
-
                         data.data.device_type = $(this).attr('device_type');
 
                         THIS.format_data(data);
@@ -606,7 +624,7 @@ winkstart.module('voip', 'device', {
         },
 
         format_data: function(data) {
-            if(data.data.device_type === 'cellphone') {
+            if(data.data.device_type === 'smartphone' || data.data.device_type === 'landline' || data.data.device_type === 'cellphone') {
                 data.data.call_forward = {
                     enabled: true,
                     require_keypress: true,
@@ -618,9 +636,15 @@ winkstart.module('voip', 'device', {
                     enabled: false
                 };
             }
+
         },
 
         migrate_data: function(data) {
+
+            if(data.data.device_type == 'cell_phone') {
+                data.data.device_type = 'cellphone';
+            }
+
             if(typeof data.data.caller_id == 'object') {
                 if('default' in data.data.caller_id) {
                     data.data.caller_id.external = data.data.caller_id['default'];
@@ -631,10 +655,6 @@ winkstart.module('voip', 'device', {
                     data.data.caller_id.internal = data.data.caller_id.emergency;
                     delete data.data.caller_id.emergency;
                 }
-            }
-
-            if(data.data.device_type == 'cell_phone') {
-                data.data.device_type = 'cellphone';
             }
 
             if(typeof data.data.media == 'object' && typeof data.data.media.fax == 'object' && 'codecs' in data.data.media.fax) {
@@ -706,7 +726,7 @@ winkstart.module('voip', 'device', {
                 form_data.media.video.codecs = $.map(form_data.media.video.codecs, function(val) { return (val) ? val : null });
             }
 
-            if(form_data.device_type == 'cellphone') {
+            if(form_data.device_type == 'smartphone' || form_data.device_type == 'landline' || form_data.device_type == 'cellphone') {
                 form_data.call_forward.number = form_data.call_forward.number.replace(/\s|\(|\)|\-|\./g,'');
                 form_data.enabled = form_data.call_forward.enabled;
             }
@@ -776,7 +796,7 @@ winkstart.module('voip', 'device', {
 
                     /* Cell Phones are always registered */
                     $.each(data.data, function(k, v) {
-                        if($.inArray(v.device_type, ['cellphone']) > -1) {
+                        if($.inArray(v.device_type, ['smartphone', 'landline', 'cellphone']) > -1) {
                             if(v.enabled === false) {
                                 $('#' + v.id, $('#device-listpanel', parent)).addClass('disabled');
                             }

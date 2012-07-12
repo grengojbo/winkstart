@@ -244,7 +244,12 @@ winkstart.module('voip', 'user', {
                     field_data: {
                         device_types: {
                             sip_device: 'SIP Device',
-                            cellphone: 'Cell Phone'
+                            cellphone: 'Cell Phone',
+                            fax: 'Fax',
+                            smartphone: 'Smartphone',
+                            landline: 'landline',
+                            softphone: 'Softphone',
+                            sip_uri: 'SIP URI'
                         }
                     }
                 };
@@ -342,7 +347,7 @@ winkstart.module('voip', 'user', {
                     device_id: device_id
                 },
                 function(_data, status) {
-                    if(_data.data.device_type == 'cellphone') {
+                    if($.inArray(_data.data.device_type, ['cellphone', 'smartphone', 'landline']) > -1) {
                         _data.data.call_forward.enabled = enabled;
                     }
                     _data.data.enabled = enabled;

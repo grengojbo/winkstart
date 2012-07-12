@@ -1,13 +1,19 @@
-    winkstart.module('accounts', 'accounts', {
+winkstart.module('skeleton', 'skeleton', {
+        css: {
+            skeleton: 'css/skeleton.css'
+        },
+
+        templates: {
+            skeleton: 'tmpl/skeleton.html'
+        },
+
         subscribe: {
-            'accounts.activate' : 'activate',
-            'accounts.initialized' : 'initialized',
-            'accounts.module_activate': 'module_activate',
+            'skeleton.activate' : 'activate',
+            'skeleton.initialized' : 'initialized',
+            'skeleton.module_activate': 'module_activate'
         }
     },
-    /* The code in this initialization function is required for
-     * loading routine.
-     */
+
     function() {
         var THIS = this;
 
@@ -33,22 +39,33 @@
 
         THIS.whapp_auth(function() {
             winkstart.publish('whappnav.add', {
-                name : THIS.__module,
-                weight: 10
+                name: THIS.__module,
+                weight: 0 /* TODO: Whapps are displayed from left to right depending on their weight (higher weight are on the right) */
             });
+
+            //This disables lazy loading
             THIS.initialization_check();
         });
 
-        winkstart.registerResources(THIS.__whapp, THIS.config.resources);
+        THIS.whapp_config();
+
+        winkstart.publish('skeleton.loaded');
     },
     {
-        
-        billing_provider: 'braintree',
-
+        /* A modules object is required for the loading routine.
+         * The format is as follows:
+         * <module name>: <initialization status>
+         */
         modules: {
-            'accounts_manager': false
+            'sub_module': false
         },
 
+        /* The following code is generic and should be abstracted.
+         * For the time being, you can just copy and paste this
+         * into other whapps.
+         *
+         * BEGIN COPY AND PASTE CODE
+         */
         is_initialized: false,
 
         uninitialized_count: 1337,
@@ -58,16 +75,16 @@
 
             THIS.is_initialized = true;
 
-            if(winkstart.apps['accounts']['default']){
+            if(winkstart.apps['skeleton']['default']) {
+                $('[data-whapp="skeleton"] > a').addClass('activate');
                 THIS.setup_page();
-                $('[data-whapp="accounts"] > a').addClass('activate');
             }
         },
 
         activate: function() {
             var THIS = this;
 
-
+            console.log('whapp.activate');
 
             THIS.whapp_auth(function() {
                 THIS.initialization_check();
@@ -78,6 +95,7 @@
             var THIS = this;
 
             if (!THIS.is_initialized) {
+                console.log('no');
                 // Load the modules
                 $.each(THIS.modules, function(k, v) {
                     if(!v) {
@@ -85,14 +103,14 @@
                         winkstart.module(THIS.__module, k).init(function() {
                             winkstart.log(THIS.__module + ': Initialized ' + k);
 
-                            if(!--THIS.uninitialized_count) {
+                            if(!(--THIS.uninitialized_count)) {
                                 winkstart.publish(THIS.__module + '.initialized', {});
                             }
                         });
                     }
                 });
-            }
-            else {
+            } else {
+                console.log('yes');
                 THIS.setup_page();
             }
         },
@@ -129,10 +147,24 @@
             return count;
         },
 
+        whapp_config: function() {
+            var THIS = this;
+
+            /* Uncomment if you want this whapp to be masqueradable
+            winkstart.apps['skeleton'] = $.extend(true, {
+                is_masqueradable: true
+            }, winkstart.apps['skeleton']);
+            */
+        },
+
+        /* A setup_page function is required for the copy and paste code */
         setup_page: function() {
             var THIS = this;
 
-            winkstart.publish('accounts.module_activate', {name: 'accounts_manager'});
+            console.log('setup_page_skeleton');
+            $('#ws-content').empty()
+                            .append(THIS.templates.skeleton.tmpl());
         }
+        /* End copy and paste */
     }
 );
