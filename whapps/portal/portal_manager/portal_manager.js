@@ -4,11 +4,63 @@ winkstart.module('portal', 'portal_manager', {
         ],
 
         templates: {
-            portal_manager: 'tmpl/portal_manager.html'
+            portal_manager: 'tmpl/portal_manager.html',
+            device_line: 'tmpl/device_line.html',
+            general_edit: 'tmpl/phones/general_edit.html',
+            smartphone: 'tmpl/phones/smartphone.html',
+            landline: 'tmpl/phones/landline.html',
+            cellphone: 'tmpl/phones/cellphone.html',
+            softphone: 'tmpl/phones/softphone.html',
+            sip_device: 'tmpl/phones/sip_device.html',
+            fax: 'tmpl/phones/fax.html'
         },
 
         subscribe: {
             'portal_manager.activate' : 'activate'
+        },
+
+        validation_device: {
+            landline: [
+                { name: '#name',                regex: /^[a-zA-Z0-9\s_']+$/ },
+                { name: '#call_forward_number', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ }
+            ],
+            smartphone: [
+                { name: '#name',                regex: /^[a-zA-Z0-9\s_']+$/ },
+                { name: '#call_forward_number', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ }
+            ],
+            sip_device : [
+                { name: '#name',                      regex: /^[a-zA-Z0-9\s_'\-]+$/ },
+                { name: '#mac_address',               regex: /^(((\d|([a-f]|[A-F])){2}:){5}(\d|([a-f]|[A-F])){2})$|^$|^(((\d|([a-f]|[A-F])){2}-){5}(\d|([a-f]|[A-F])){2})$|^(((\d|([a-f]|[A-F])){2}){5}(\d|([a-f]|[A-F])){2})$/ },
+                { name: '#caller_id_name_internal',   regex: /^[0-9A-Za-z ,]{0,15}$/ },
+                { name: '#caller_id_number_internal', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ },
+                { name: '#caller_id_name_external',   regex: /^[0-9A-Za-z ,]{0,15}$/ },
+                { name: '#caller_id_number_external', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ },
+                { name: '#sip_username',              regex: /^[^\s]+$/ },
+                { name: '#sip_expire_seconds',        regex: /^[0-9]+$/ }
+            ],
+            fax : [
+                { name: '#name',                      regex: /^[a-zA-Z0-9\s_'\-]+$/ },
+                { name: '#mac_address',               regex: /^(((\d|([a-f]|[A-F])){2}:){5}(\d|([a-f]|[A-F])){2})$|^$|^(((\d|([a-f]|[A-F])){2}-){5}(\d|([a-f]|[A-F])){2})$|^(((\d|([a-f]|[A-F])){2}){5}(\d|([a-f]|[A-F])){2})$/ },
+                { name: '#caller_id_name_internal',   regex: /^[0-9A-Za-z ,]{0,15}$/ },
+                { name: '#caller_id_number_internal', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ },
+                { name: '#caller_id_name_external',   regex: /^[0-9A-Za-z ,]{0,15}$/ },
+                { name: '#caller_id_number_external', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ },
+                { name: '#sip_username',              regex: /^[^\s]+$/ },
+                { name: '#sip_expire_seconds',        regex: /^[0-9]+$/ }
+            ],
+            cellphone: [
+                { name: '#name',                regex: /^[a-zA-Z0-9\s_']+$/ },
+                { name: '#call_forward_number', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ }
+            ],
+            softphone: [
+                { name: '#name',                      regex: /^[a-zA-Z0-9\s_'\-]+$/ },
+                { name: '#caller_id_name_internal',   regex: /^[0-9A-Za-z ,]{0,15}$/ },
+                { name: '#caller_id_number_internal', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ },
+                { name: '#caller_id_name_external',   regex: /^[0-9A-Za-z ,]{0,15}$/ },
+                { name: '#caller_id_number_external', regex: /^[\+]?[0-9\s\-\.\(\)]*$/ },
+                { name: '#sip_username',              regex: /^[^\s]+$/ },
+                { name: '#sip_expire_seconds',        regex: /^[0-9]+$/ }
+            ]
         },
 
         validation: [
