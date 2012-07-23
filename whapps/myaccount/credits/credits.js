@@ -138,7 +138,7 @@ winkstart.module('myaccount', 'credits', {
 
             winkstart.request('myaccount_limits.get', {
                     account_id: winkstart.apps['myaccount'].account_id,
-                    api_url: winkstart.apps['myaccount'].api_url,
+                    api_url: winkstart.apps['myaccount'].api_url
                 },
                 function(data, status) {
                     if(typeof success == 'function') {
