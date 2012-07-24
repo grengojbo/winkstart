@@ -276,7 +276,7 @@ winkstart.module('myaccount', 'credits', {
                     update_container: function(html) {
                         $('#credits_label', html).removeClass('green orange red')
                                                  .addClass(this.color)
-                                                 .html('$ '+ this.number.toFixed(2));
+                                                 .html('$ '+ this.number);
                     }
                 }
             };
