@@ -33,7 +33,7 @@ winkstart.module('myaccount', 'billing', {
                 url: '{api_url}/accounts/{account_id}/braintree/customer',
                 contentType: 'application/json',
                 verb: 'GET'
-            },
+            }
         }
     },
 

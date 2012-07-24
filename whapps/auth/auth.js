@@ -390,7 +390,7 @@ winkstart.module('auth', 'auth',
                 if(code != "" && code != null) {
                     winkstart.request('auth.invite_code', {
                             api_url: winkstart.apps.auth.api_url,
-                            invite_code: code,
+                            invite_code: code
                         },
                         function(_data, status) {
                             winkstart.publish('onboard.register', {
