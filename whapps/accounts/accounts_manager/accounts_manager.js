@@ -15,7 +15,7 @@ winkstart.module('accounts', 'accounts_manager', {
             'accounts_manager.edit' : 'edit_accounts_manager',
             'accounts_manager.switch_account': 'switch_account',
             'accounts_manager.trigger_masquerade': 'trigger_masquerade',
-            'nav.company_name_click': 'restore_masquerading',
+            'nav.company_name_click': 'restore_masquerading'
         },
 
         validation: [
@@ -269,7 +269,7 @@ winkstart.module('accounts', 'accounts_manager', {
                                     winkstart.request('accounts_manager.credits.get', {
                                             account_id: data.id,
                                             api_url: winkstart.apps['accounts'].api_url,
-                                            billing_provider: THIS.billing_provider,
+                                            billing_provider: THIS.billing_provider
                                         },
                                         function(_data_c, status) {
                                             render_data.credits = _data_c.data;
@@ -656,12 +656,12 @@ winkstart.module('accounts', 'accounts_manager', {
                 winkstart.request('accounts_manager.credits.get', {
                         account_id: account_id,
                         api_url: winkstart.apps['accounts'].api_url,
-                        billing_provider: THIS.billing_provider,
+                        billing_provider: THIS.billing_provider
                     },
                     function(_data_c, status) {
                         winkstart.request('accounts_manager.limits.get', {
                                 account_id: account_id,
-                                api_url: winkstart.apps['accounts'].api_url,
+                                api_url: winkstart.apps['accounts'].api_url
                             },
                             function(_data_l, status) {
 

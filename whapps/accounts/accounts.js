@@ -2,7 +2,7 @@
         subscribe: {
             'accounts.activate' : 'activate',
             'accounts.initialized' : 'initialized',
-            'accounts.module_activate': 'module_activate',
+            'accounts.module_activate': 'module_activate'
         }
     },
     /* The code in this initialization function is required for
