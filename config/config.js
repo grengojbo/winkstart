@@ -25,6 +25,11 @@
                         label: 'Number Manager',
                         icon: 'menu1',
                         api_url: 'http://linkom3000-10.cosmonova.net.ua/v1'
+                    },
+                    userportal: {
+                        label: "User Portal",
+                        icon: "userportal",
+                        api_url: "http://linkom3000-10.cosmonova.net.ua:8000/v1"
                     }
                 },
                 available_apps: ['voip', 'cluster', 'userportal', 'accounts', 'developer', 'numbers', 'pbxs'],
@@ -46,6 +51,11 @@
                         label: 'Number Manager',
                         icon: 'menu1',
                         api_url: 'http://linkom3000-10.cosmonova.net.ua/v1'
+                    },
+       userportal: {
+           label: "User Portal",
+           icon: "userportal",
+           api_url: "http://linkom3000-10.cosmonova.net.ua:8000/v1"
                     }
                 },
                 available_apps: ['voip', 'cluster', 'userportal', 'accounts', 'developer', 'numbers', 'pbxs'],
@@ -62,6 +72,11 @@
                         label: 'Number Manager',
                         icon: 'menu1',
                         api_url: 'http://linkom3000-10.cosmonova.net.ua/v1'
+                    },
+       userportal: {
+           label: "User Portal",
+           icon: "userportal",
+           api_url: "http://linkom3000-10.cosmonova.net.ua:8000/v1"
                     }
                 },
                 available_apps: ['voip', 'cluster', 'userportal', 'accounts', 'developer', 'numbers', 'pbxs'],
@@ -78,6 +93,11 @@
                         label: 'Number Manager',
                         icon: 'menu1',
                         api_url: 'http://linkom3000-10.cosmonova.net.ua/v1'
+                    },
+       userportal: {
+           label: "User Portal",
+           icon: "userportal",
+           api_url: "http://linkom3000-10.cosmonova.net.ua:8000/v1"
                     }
                 },
                 available_apps: ['voip', 'cluster', 'userportal', 'accounts', 'developer', 'numbers', 'pbxs'],
@@ -94,6 +114,11 @@
                         label: 'Number Manager',
                         icon: 'menu1',
                         api_url: 'http://linkom3000-10.cosmonova.net.ua/v1'
+                    },
+       userportal: {
+           label: "User Portal",
+           icon: "userportal",
+           api_url: "http://linkom3000-10.cosmonova.net.ua:8000/v1"
                     }
                 },
                 available_apps: ['voip', 'cluster', 'userportal', 'accounts', 'developer', 'numbers', 'pbxs'],
@@ -110,6 +135,11 @@
                         label: 'Number Manager',
                         icon: 'menu1',
                         api_url: 'http://linkom3000-10.cosmonova.net.ua/v1'
+                    },
+       userportal: {
+           label: "User Portal",
+           icon: "userportal",
+           api_url: "http://linkom3000-10.cosmonova.net.ua:8000/v1"
                     }
                 },
                 available_apps: ['voip', 'cluster', 'userportal', 'accounts', 'developer', 'numbers', 'pbxs'],
