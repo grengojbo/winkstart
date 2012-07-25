@@ -6,4 +6,5 @@ origin/development
 .idea/
 *.swf
 atlassian-ide-plugin.xml
+tmp/
 
