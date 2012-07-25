@@ -1,5 +1,12 @@
 <atlassian-ide-plugin>
   <project-configuration>
-    <servers />
+    <servers>
+      <jira>
+        <server-id>76ea2f08-3200-4c14-90e4-ff00f4597e93</server-id>
+        <name>2600Hz</name>
+        <url>https://2600hz.atlassian.net</url>
+        <shared>false</shared>
+      </jira>
+    </servers>
   </project-configuration>
 </atlassian-ide-plugin>
