@@ -1,0 +1,18 @@
+Index: whapps/core/layout/tmpl/layout.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><div>\n    <div class=\"topbar\">\n        <div class=\"topbar-inner\">\n            <div class=\"container-fluid\">\n                <div id=\"ws-topbar\" class=\"ws-topbar\">\n                    <a class=\"brand logo\" href=\"#\"/>\n                    <ul class=\"nav whapps\"/>\n                    <ul class=\"nav secondary-nav links\"/>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"ws-content container-fluid page\" id=\"ws-content\">\n         \n    </div>\n    <div class=\"footer_wrapper\"><span class=\"powered_by\"><a href=\"http://www.2600hz.com/\" target=\"_blank\">Powered by 2600hz</a></div>\n\n    <div id=\"loading\">\n        <div class=\"graphic\"><img src=\"whapps/core/layout/images/loading.gif\"/></div>\n        <div class=\"text\">Please wait...</div>\n        <div class=\"clear\"/>\n    </div>\n\n</div>\n\n
+===================================================================
+--- whapps/core/layout/tmpl/layout.html	(revision 7bbb147fbede266cd3086dc5005b3627d176333d)
++++ whapps/core/layout/tmpl/layout.html	(revision )
+@@ -13,7 +13,7 @@
+     <div class="ws-content container-fluid page" id="ws-content">
+          
+     </div>
+-    <div class="footer_wrapper"><span class="powered_by"><a href="http://www.2600hz.com/" target="_blank">Powered by 2600hz</a></div>
++    <div class="footer_wrapper"><span class="powered_by"><a href="http://www.2600hz.com/" target="_blank">Powered by 2600hz</a></span></div>
+ 
+     <div id="loading">
+         <div class="graphic"><img src="whapps/core/layout/images/loading.gif"/></div>
